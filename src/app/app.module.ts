@@ -20,6 +20,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { LoginPopoverComponent } from './login-popover/login-popover.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { LoginCardComponent } from './login-card/login-card.component';
+import { SaibaMaisAppPontoComponent } from './saiba-mais-app-ponto/saiba-mais-app-ponto.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LoginCardComponent } from './login-card/login-card.component';
     NavBarComponent,
     LoginPopoverComponent,
     LoginCardComponent,
+    SaibaMaisAppPontoComponent,
   ],
   imports: [
     BrowserModule,

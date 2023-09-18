@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { User } from '../interafaces/user.interface';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -8,16 +8,10 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   templateUrl: './login-popover.component.html',
   styleUrls: ['./login-popover.component.scss']
 })
-export class LoginPopoverComponent implements OnInit {
+export class LoginPopoverComponent {
   @ViewChild('childModal', { static: false }) childModal?: ModalDirective;
 
   user = {} as User;
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
 
   showChildModal(): void {
     this.childModal?.show();
@@ -27,5 +21,4 @@ export class LoginPopoverComponent implements OnInit {
     this.childModal?.hide();
   }
 
-  reset() {}
 }
