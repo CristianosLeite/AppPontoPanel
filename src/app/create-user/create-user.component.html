@@ -6,21 +6,33 @@
   <form #userForm="ngForm">
     <div class="form-group">
       <label for="nome">Nome</label>
-      <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="user.firstName" required>
+      <input type="text" id="nome" class="form-control" name="firstName" [(ngModel)]="newUser.firstName" required
+      maxlength="50"
+      pattern="^[a-zA-Z\u00C0-\u00FF]*$"
+      >
     </div>
     <div class="form-group">
       <label for="sobrenome">Sobrenome</label>
-      <input type="text" id="sobrenome" class="form-control" name="sobrenome" [(ngModel)]="user.lastName" required>
+      <input type="text" id="sobrenome" class="form-control" name="lastName" [(ngModel)]="newUser.lastName" required
+      maxlength="50"
+      pattern="^[a-zA-Z\u00C0-\u00FF]*$"
+      >
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
-      <input type="text" id="cpf" class="form-control" name="cpf" [(ngModel)]="user.registerNumber" required>
+      <input type="text" id="cpf" class="form-control" name="registerNumber" [(ngModel)]="newUser.registerNumber" required
+        maxlength="14" placeholder="000.000.000-00"
+        (change)="cpfMask($event)" required
+        pattern="^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}$"
+        >
     </div>
     <div class="form-group">
       <label for="userType">Tipo de Usuário</label>
-      <select id="userType" class="form-control" name="userType" [(ngModel)]="user.role" required>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
+      <select id="userType" class="form-control" name="role" [(ngModel)]="newUser.role" required>
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="admin">Administrador (Tem acesso Geral ao sistema App Ponto)</option>
+        <option value="manager">Gestor (Tem acesso somente à sua organização)</option>
+        <option value="user">Usuário (Tem acesso somente ao aplicativo App Ponto)</option>
       </select>
     </div>
   </form>

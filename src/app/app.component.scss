@@ -1,0 +1,49 @@
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  border: 2px solid #000;
+  margin: 10px;
+}
+
+.square-box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: right;
+  max-width: 50%;
+}
+
+html {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* Responsive square sizes for smaller screens */
+@media (max-width: 768px) {
+  .square-size {
+      width: 120px;
+      height: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .square-size {
+      width: 90px;
+      height: 90px;
+  }
+}

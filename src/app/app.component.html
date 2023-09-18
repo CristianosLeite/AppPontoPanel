@@ -1,23 +1,122 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#">Início</a>
-      <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+  <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light-subtle">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/login-ui-logo.png" alt="Conecsa" width="130">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Empresas</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Usuários</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Registros</a>
-              </li>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Depoimentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato</a>
+            </li>
           </ul>
+        </div>
       </div>
+      <app-login-popover></app-login-popover>
+    </nav>
   </div>
-</nav>
 
-<app-users-page></app-users-page>
+  <div style="min-height: 5vh;"></div>
+
+  <div class="container" style="flex-flow: row; display:flex">
+    <div class=content>
+      <h2 class="display-4" style="font-weight: 400; color: #323131; font-family: Arial, Helvetica, sans-serif;">
+        Conheça nosso</h2>
+      <h1 class="display-1" style="color: #375ED2; font-weight: 700;">App-Ponto</h1>
+      <p class="lead" style="margin-top: 2%; color: #323131; font-weight: 300;">Registre o ponto de seus
+        colaboradores de forma eficiente!</p>
+      <a href="#saiba-mais" class="btn btn-dark btn-lg"
+        style="margin-top: 5%; margin-bottom: 5%; border-radius: 30px; min-width: 200px; background-color: #011C43;">Saiba
+        mais</a>
+    </div>
+    <div class="container square-box">
+      <div>
+        <!-- Square 1 -->
+        <div class="square square-size" style="background: #04A24D;">
+          <img class="square-size" src="./assets/clock.gif" alt="clock-running" width="120"
+          [popover]="'A qualquer hora'" triggers="mouseenter:mouseleave">
+        </div>
+
+        <!-- Square 2 -->
+        <div class="square square-size" style="background: #B45CE0;">
+          <img class="square-size" src="./assets/man-at-phone.gif" alt="man-at-phone" width="120"
+            style="margin-left: -30px; margin-bottom: -9px;"
+            [popover]="'Fácil de usar'" triggers="mouseenter:mouseleave">
+        </div>
+      </div>
+      <div>
+        <!-- Square 3 -->
+        <div class="square square-size" style="background: #FA9D31;">
+          <img class="square-size" src="./assets/papers.webp" alt="papers" width="120">
+          <img class="square-size" src="./assets/x.gif" alt="no-more-papers" width="120" style="position: absolute;"
+          [popover]="'Livre de papéis'" triggers="mouseenter:mouseleave">
+        </div>
+
+        <!-- Square 4 -->
+        <div class="square square-size" style="background: #375ED2;">
+          <img class="square-size" src="./assets/anywhere.gif" alt="anywhere" width="130"
+          [popover]="'Em qualquer lugar'" triggers="mouseenter:mouseleave">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white text-center py-3">
+    <div class="container">
+      &copy; 2023 Conecsa Automação e Ti.
+    </div>
+  </footer>
+
+  <!-- Include Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<body id="saiba-mais">
+
+
+  <div class="container mt-5">
+    <h1>Controle de Ponto Simplificado e em Conformidade com a Portaria 373</h1>
+    <br>
+    <p>Gerenciar o ponto dos seus colaboradores nunca foi tão fácil! Apresentamos o <strong>App-Ponto Conecsa</strong>, a solução perfeita para a gestão de jornada de trabalho da sua equipe.</p>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <h2><i class="bi bi-clock"></i> Registro de Ponto Eficiente</h2>
+        <p>Adeus ao antigo e demorado método de registro de ponto em papel. Com o App-Ponto Conecsa, seus colaboradores podem registrar o ponto de forma rápida e fácil, tudo na palma da mão.</p>
+      </div>
+      <div class="col-md-4">
+        <h2><i class="bi bi-calendar"></i> Gestão de Escala de Trabalho</h2>
+        <p>O painel do gestor permite que você defina as escalas de trabalho de cada colaborador de maneira simples e organizada. Nunca foi tão fácil criar e gerenciar turnos de trabalho.</p>
+      </div>
+      <div class="col-md-4">
+        <h2><i class="bi bi-list-check"></i> Cálculo de Horas Extras Personalizado</h2>
+        <p>O App-Ponto Conecsa automatiza o cálculo de horas extras de acordo com as regras de negócio da sua empresa. Diga adeus aos erros nos cálculos e ao trabalho manual.</p>
+      </div>
+    </div>
+    <br>
+
+    <p>Simplifique a gestão de ponto da sua empresa, economize tempo e elimine preocupações com questões legais. Experimente o App-Ponto Conecsa hoje mesmo e descubra como tornar a gestão de jornada de trabalho mais eficiente do que nunca!</p>
+    <br>
+    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=io.ionic.syspconecsa&pcampaignid=web_share" style="margin-bottom: 30px;">Baixe agora</a>
+    <p>Se você está pronto para revolucionar a forma como gerencia o ponto dos seus colaboradores, o App-Ponto Conecsa é a escolha certa. Experimente e sinta a diferença!</p>
+
+    <p>Para mais informações, visite nosso site em <a href="www.conecsa.com.br">www.conecsa.com.br</a> ou entre em contato conosco pelo email <a href="comercial@conecsa.com.br">comercial@conecsa.com.br</a>.</p>
+  </div>
+
+</body>

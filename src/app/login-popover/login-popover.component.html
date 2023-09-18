@@ -1,0 +1,28 @@
+<div class="login-field">
+  <button type="button" class="btn btn-ligth btn-lg" style="border-radius: 30px; min-width: 200px; font-size: small;"
+    (click)="showChildModal()">
+    Login | Cadastre-se
+    <svg style="margin-left: 5px; align-items:end" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+      fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+      <path fill-rule="evenodd"
+        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+    </svg>
+  </button>
+</div>
+
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">Acessar Painel</h4>
+        <button type="button" class="close pull-right btn-close" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <app-login-card></app-login-card>
+      </div>
+    </div>
+  </div>
+</div>

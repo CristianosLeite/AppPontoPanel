@@ -2,28 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { LoginFormComponent } from './login-page/login-form/login-form.component';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { EnterprisesComponent } from './enterprises/enterprises.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { FormsModule } from '@angular/forms';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { NgForm } from '@angular/forms';
 import { AddEmailComponent } from './add-user-information/add-email/add-email.component';
 import { AddAdressComponent } from './add-user-information/add-adress/add-adress.component';
 import { AddPhoneComponent } from './add-user-information/add-phone/add-phone.component';
 import { AddUserInformationComponent } from './add-user-information/add-user-information.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { LoginPopoverComponent } from './login-popover/login-popover.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { LoginCardComponent } from './login-card/login-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
-    LoginFormComponent,
     UsersPageComponent,
     EnterprisesComponent,
     CreateUserComponent,
@@ -31,6 +32,9 @@ import { AddUserInformationComponent } from './add-user-information/add-user-inf
     AddAdressComponent,
     AddPhoneComponent,
     AddUserInformationComponent,
+    NavBarComponent,
+    LoginPopoverComponent,
+    LoginCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,12 @@ import { AddUserInformationComponent } from './add-user-information/add-user-inf
     BrowserAnimationsModule,
     FormsModule,
     CollapseModule.forRoot(),
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
+    ModalModule.forRoot()
   ],
 
-  providers: [BsModalService, NgForm],
+  providers: [BsModalService, NgForm, ],
 
   bootstrap: [AppComponent]
 })
