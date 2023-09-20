@@ -21,6 +21,7 @@ import { LoginPopoverComponent } from './login-popover/login-popover.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { LoginCardComponent } from './login-card/login-card.component';
 import { SaibaMaisAppPontoComponent } from './saiba-mais-app-ponto/saiba-mais-app-ponto.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { SaibaMaisAppPontoComponent } from './saiba-mais-app-ponto/saiba-mais-ap
     LoginPopoverComponent,
     LoginCardComponent,
     SaibaMaisAppPontoComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
