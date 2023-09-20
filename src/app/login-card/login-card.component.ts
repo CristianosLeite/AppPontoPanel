@@ -14,7 +14,6 @@ export class LoginCardComponent {
   constructor(private apiService: ApiServicesService) { }
 
   requestLogin(): void {
-    this.apiService.login(this.user);
+    this.apiService.login();
   }
-
 }

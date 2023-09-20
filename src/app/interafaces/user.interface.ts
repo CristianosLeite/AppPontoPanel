@@ -15,4 +15,5 @@ export interface User {
   phones: Phone[];
   emails: Email[];
   records: Record[];
+  token: string;
 }
