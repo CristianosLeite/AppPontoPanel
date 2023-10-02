@@ -34,7 +34,7 @@ export class ApiServicesService {
     }
   }
 
-  async getUser(companyId: string, userId: string): Promise<object> {
+  async login(companyId: string, userId: string): Promise<any> {
     try {
       const response = await lastValueFrom(this.http.post(
         `https://app-ponto-82a9efa89434.herokuapp.com/api/login?companyId=${companyId}&userId=${userId}`, { responseType: 'json' }));
@@ -45,6 +45,4 @@ export class ApiServicesService {
       return {error};
     }
   }
-
-  login() {}
 }
