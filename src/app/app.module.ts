@@ -22,7 +22,9 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { LoginCardComponent } from './login-card/login-card.component';
 import { SaibaMaisAppPontoComponent } from './saiba-mais-app-ponto/saiba-mais-app-ponto.component';
 import { HomeComponent } from './home/home.component';
-
+import { AdminComponent } from './home/admin/admin.component';
+import { UserComponent } from './home/user/user.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { HomeComponent } from './home/home.component';
     LoginCardComponent,
     SaibaMaisAppPontoComponent,
     HomeComponent,
+    AdminComponent,
+    UserComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,10 +54,10 @@ import { HomeComponent } from './home/home.component';
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
 
-  providers: [BsModalService, NgForm, ],
+  providers: [BsModalService, NgForm],
 
   bootstrap: [AppComponent]
 })

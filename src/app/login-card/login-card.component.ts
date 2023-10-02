@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../interafaces/user.interface';
 import { ApiServicesService } from '../api-services.service';
 import { DatabaseService } from '../database.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-card',
@@ -16,15 +18,17 @@ export class LoginCardComponent {
 
   constructor(
     private apiService: ApiServicesService,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  requestLogin(): void {
-    this.apiService.login(this.companyId, this.userId).then((response) => {
+  requestLogin() {
+    this.apiService.login(this.companyId, this.userId).then(async (response) => {
       if (response) {
-        console.log(response);
         this.user = response.user;
-        this.databaseService.saveUser(this.user);
+        await this.databaseService.saveUser(this.user);
+        this.router.navigate(['/home'], {relativeTo: this.route});
       }
     }
     ).catch((error) => {

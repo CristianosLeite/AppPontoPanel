@@ -7,7 +7,7 @@ import { HomeComponent } from "./home.component";
   imports: [
     RouterModule.forChild([
       {
-        path: 'home',
+        path: '#',
         component: HomeComponent,
         data: { title: 'Home' },
       },
