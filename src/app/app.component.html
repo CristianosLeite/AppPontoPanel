@@ -1,44 +1,39 @@
-<body>
+<body data-aos="fade-up" data-aos-duration="3000">
 
-  <div class="container">
+  <header class="container" id="#" data-aos="fade-up" data-aos-duration="2000">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light-subtle">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="./assets/login-ui-logo.png" alt="Conecsa" width="130">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Depoimentos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
-            </li>
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="https://www.conecsa.com.br">
+        <img src="./assets/login-ui-logo.png" alt="Conecsa" width="130">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Depoimentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://conecsa.com.br/#contacts">Contato</a>
+          </li>
+        </ul>
       </div>
       <app-login-popover></app-login-popover>
     </nav>
-  </div>
+  </header>
 
-  <div style="min-height: 5vh;"></div>
+  <div class="spacer"></div>
 
   <div class="container" style="flex-flow: row; display:flex">
     <div class=content>
       <h2 class="display-4" style="font-weight: 400; color: #323131; font-family: Arial, Helvetica, sans-serif;">
         Conheça nosso</h2>
-      <h1 class="display-1" style="color: #375ED2; font-weight: 700;">App-Ponto</h1>
+      <h1 class="display-1" style="color: #375ED2; font-weight: 700; margin-bottom: 40px;">App-Ponto</h1>
       <p class="lead" style="margin-top: 2%; color: #323131; font-weight: 300;">Registre o ponto de seus
         colaboradores de forma eficiente!</p>
       <a href="#saiba-mais" class="btn btn-dark btn-lg"
@@ -80,15 +75,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer bg-dark text-white text-center py-3">
-    <div class="container">
-      &copy; 2023 Conecsa Automação e Ti.
-    </div>
-  </footer>
-
-  <!-- Include Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="spacer"></div>
 
 </body>
 
