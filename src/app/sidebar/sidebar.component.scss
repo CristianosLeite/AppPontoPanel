@@ -1,38 +1,81 @@
 .icons {
-  font-size: 30px;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   height: 70%;
-  width: 100%;
   padding: 0;
-}
-
-.icon {
-  margin-bottom: 30px;
 }
 
 .side-header {
-  font-size: 30px;
+  font-size: 18px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 10%;
-  width: 100%;
-  padding: 0;
-  margin-top: 30px;
+  padding: 5px;
+}
+
+.logo {
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .side-footer {
-  font-size: 30px;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 20%;
-  width: 100%;
-  padding: 0;
-  margin-top: 30px;
+}
+
+.sidebar {
+  display: block;
+  background-color: #EFEFEF;
+  width: 50px;
+  transition: width 0.3s;}
+
+.sidebar.expanded {
+  width: 180px;
+}
+
+.icon {
+  font-size: 20px;
+  padding: 10px;
+  display: flex;
+  margin-left: 5px
+}
+
+.slot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 180px;
+}
+
+.slot:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.sidebar.expanded {
+  font-size: 18px;
+}
+
+i:hover {
+  color: #04A24D;
+  cursor: pointer;
+}
+
+a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #04A24D;
+  cursor: pointer;
 }

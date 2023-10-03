@@ -1,20 +1,67 @@
-<div class="side-header">
-  <i class="bi bi-arrow-bar-right icon"></i>
-</div>
+<div class="sidebar" [class.expanded]="isExpanded">
+  <div class="side-header">
+    <img class="logo" src="../../assets/logo.png" alt="logo" *ngIf="isExpanded">
+    <i class="bi bi-arrow-bar-right icon" (click)="toggleSidebar()" *ngIf="!isExpanded"></i>
+    <i class="bi bi-arrow-bar-left icon" (click)="toggleSidebar()" *ngIf="isExpanded"></i>
+  </div>
+  <div class="icons">
+    <div class="slot">
+      <i class="bi bi-card-checklist icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #cardChecklistText>
+          <a routerLink="/home">Início</a>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="cardChecklistText"></ng-template>
+      </ng-container>
+    </div>
 
-<div class="icons">
+    <div class="slot">
+      <i class="bi bi-person-check icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #personCircleText>
+          <a routerLink="/pendings">Solicitações</a>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="personCircleText"></ng-template>
+      </ng-container>
+    </div>
 
-  <i class="bi bi-card-checklist icon"></i>
+    <div class="slot">
+      <i class="bi bi-people icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #calendarCheckText>
+          <a routerLink="/users">Usuários</a>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
+      </ng-container>
+    </div>
 
-  <i class="bi bi-chat-left-dots icon"></i>
+      <div class="slot">
+        <i class="bi bi-calendar3 icon"></i>
+        <ng-container *ngIf="isExpanded">
+          <ng-template #calendarCheckText>
+            <a routerLink="/schedule">Escala</a>
+          </ng-template>
+          <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
+        </ng-container>
+      </div>
 
-  <i class="bi bi-people icon"></i>
+      <div class="slot">
+        <i class="bi bi-receipt-cutoff icon"></i>
+        <ng-container *ngIf="isExpanded">
+          <ng-template #calendarCheckText>
+            <a routerLink="/reports">Relatórios</a>
+          </ng-template>
+          <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
+        </ng-container>
+      </div>
+    </div>
 
-  <i class="bi bi-calendar3 icon"></i>
-
-  <i class="bi bi-receipt icon"></i>
-</div>
-
-<div class="side-footer">
-  <i class="bi bi-gear icon"></i>
-</div>
+    <div class="side-footer slot">
+      <i class="bi bi-gear icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #calendarCheckText>
+          <a routerLink="/settings">Configurações</a>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
+      </ng-container>
+    </div>

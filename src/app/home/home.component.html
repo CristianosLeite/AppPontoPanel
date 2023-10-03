@@ -1,6 +1,7 @@
 <!-- Admin -->
 <body *ngIf="role === 'admin' ">
     <app-admin></app-admin>
+    <app-footer></app-footer>
 </body>
 
 <!-- Manager -->
@@ -12,4 +13,5 @@
 <!-- User -->
 <body *ngIf="role === 'user' ">
     <app-user></app-user>
+    <app-footer></app-footer>
 </body>
