@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class RecordsAreaComponent {
 
+  records = [
+    {
+      "status": true,
+      "name": "Cristiano",
+      "recordType": "Entrada",
+      "extraHours": "00:00",
+      "missingHours": "00:00",
+    },
+    {
+      "status": false,
+      "name": "Cristiano",
+      "recordType": "Entrada",
+      "extraHours": "00:00",
+      "missingHours": "00:00",
+    }
+  ];
+
 }

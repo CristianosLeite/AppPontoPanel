@@ -1,3 +1,23 @@
 <div class="container card">
-  <p>records-area works!</p>
+  <table class="table table-borderless table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Funcionário</th>
+        <th scope="col">Entrada/Saída</th>
+        <th scope="col">Horas extras</th>
+        <th scope="col">Horas faltantes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records">
+        <th scope="row"><div class="circle-green" *ngIf="record.status"></div>
+          <div class="circle-red" *ngIf="!record.status"></div>
+        </th>
+        <td>{{record.name}}</td>
+        <td>{{record.recordType}}</td>
+        <td>{{record.extraHours}}</td>
+        <td>{{record.missingHours}}</td>
+      </tr>
+  </table>
 </div>
