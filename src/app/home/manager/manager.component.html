@@ -1,13 +1,13 @@
-<div class="header">
-  <app-header></app-header>
-</div>
-
 <div class="body">
   <div class="sidebar">
     <app-sidebar></app-sidebar>
   </div>
 
+
   <div class="container content" *ngIf="content === 'dashboard'">
+    <div class="header">
+      <app-header></app-header>
+    </div>
     <div class="row-cols-1">
       <div class="item"></div>
       <div class="item">
