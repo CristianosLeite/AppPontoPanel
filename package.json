@@ -23,6 +23,7 @@
     "font-awesome": "^4.7.0",
     "ng-popover": "^2.0.0",
     "ngx-bootstrap": "^11.0.2",
+    "postcss": "^8.4.31",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
