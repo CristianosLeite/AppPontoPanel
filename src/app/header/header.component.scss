@@ -1,0 +1,24 @@
+div {
+  border: red 1px solid;
+  background-color: #f4f4f4;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  min-height: 10%;
+}
+
+.col-1 {
+  min-width: 80%;
+}
+
+.col-2 {
+  min-width: 20%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 30px;
+}

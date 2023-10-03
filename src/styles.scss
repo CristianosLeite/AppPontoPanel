@@ -9,10 +9,3 @@
 
 /* Importing Font Awesome SCSS file. */
 @import "./node_modules/font-awesome/scss/font-awesome";
-
-footer {
-  display: flex;
-  bottom: 0;
-  position: fixed;
-  min-width: 100%;
-}

@@ -32,6 +32,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ManagerComponent } from './home/manager/manager.component';
 import { SolicitationCardComponent } from './solicitation-card/solicitation-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SolicitationCardComponent } from './solicitation-card/solicitation-card
     HeaderComponent,
     ManagerComponent,
     SolicitationCardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
