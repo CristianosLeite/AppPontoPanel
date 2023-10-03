@@ -8,6 +8,8 @@ import { DatabaseService } from '../database.service';
 })
 export class HomeComponent implements OnInit {
 
+  role: string = 'manager';
+
   constructor(
     private databaseService: DatabaseService
   ) { }

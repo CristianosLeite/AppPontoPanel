@@ -25,6 +25,13 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './home/admin/admin.component';
 import { UserComponent } from './home/user/user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { PendingCardComponent } from './pending-card/pending-card.component';
+import { VacationCardComponent } from './vacation-card/vacation-card.component';
+import { RecordsAreaComponent } from './records-area/records-area.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
+import { ManagerComponent } from './home/manager/manager.component';
+import { SolicitationCardComponent } from './solicitation-card/solicitation-card.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +51,13 @@ import { LoginPageComponent } from './login-page/login-page.component';
     AdminComponent,
     UserComponent,
     LoginPageComponent,
+    PendingCardComponent,
+    VacationCardComponent,
+    RecordsAreaComponent,
+    SidebarComponent,
+    HeaderComponent,
+    ManagerComponent,
+    SolicitationCardComponent,
   ],
   imports: [
     BrowserModule,

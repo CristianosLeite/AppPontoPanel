@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules, ActivatedRoute } from '@angular/router';
-import { AppComponent } from './app.component';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { SaibaMaisAppPontoComponent } from './saiba-mais-app-ponto/saiba-mais-app-ponto.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './home/admin/admin.component';
 import { UserComponent } from './home/user/user.component';
-import { ManangerComponent } from './home/mananger/mananger.component';
+import { ManagerComponent } from './home/manager/manager.component';
 import { LoginPageComponent } from './login-page/login-page.component'
 
 const routes: Routes = [
@@ -35,8 +34,8 @@ const routes: Routes = [
         component: UserComponent,
       },
       {
-        path: 'home/mananger',
-        component: ManangerComponent,
+        path: 'home/manager',
+        component: ManagerComponent,
       },
     ],
   },

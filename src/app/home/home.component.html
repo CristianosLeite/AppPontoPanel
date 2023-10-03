@@ -1,1 +1,14 @@
-<h1>Home works</h1>
+<!-- Admin -->
+<body *ngIf="role === 'admin' ">
+    <app-admin></app-admin>
+</body>
+
+<!-- Manager -->
+<body *ngIf="role === 'manager' ">
+    <app-manager></app-manager>
+</body>
+
+<!-- User -->
+<body *ngIf="role === 'user' ">
+    <app-user></app-user>
+</body>
