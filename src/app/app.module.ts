@@ -33,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
 import { ManagerComponent } from './home/manager/manager.component';
 import { SolicitationCardComponent } from './solicitation-card/solicitation-card.component';
 import { FooterComponent } from './footer/footer.component';
+import { PendingsPageComponent } from './pendings-page/pendings-page.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FooterComponent } from './footer/footer.component';
     ManagerComponent,
     SolicitationCardComponent,
     FooterComponent,
+    PendingsPageComponent,
   ],
   imports: [
     BrowserModule,
