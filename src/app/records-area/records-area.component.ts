@@ -11,16 +11,26 @@ export class RecordsAreaComponent {
     {
       "status": true,
       "name": "Cristiano",
-      "recordType": "Entrada",
+      "recordType": {0:"00:00", 1:"00:00"},
       "extraHours": "00:00",
       "missingHours": "00:00",
+      "balance": "00:00"
     },
     {
       "status": false,
       "name": "Cristiano",
-      "recordType": "Entrada",
+      "recordType": {0:"00:00", 1:"00:00"},
       "extraHours": "00:00",
       "missingHours": "00:00",
+      "balance": "00:00"
+    },
+    {
+      "status": null,
+      "name": "Cristiano",
+      "recordType": {0:"00:00", 1:"00:00"},
+      "extraHours": "00:00",
+      "missingHours": "00:00",
+      "balance": "00:00"
     }
   ];
 
