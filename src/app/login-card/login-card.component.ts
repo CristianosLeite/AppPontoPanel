@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiServicesService } from '../api-services.service';
-import { DatabaseService } from '../database.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +15,6 @@ export class LoginCardComponent {
   constructor(
     private apiService: ApiServicesService,
     private router: Router,
-    private database: DatabaseService
   ) { }
 
   async requestLogin() {
