@@ -1,5 +1,6 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { DatabaseService } from '../database.service';
+import { User } from '../interafaces/user.interface';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   async getRole(): Promise<void> {
     try {
-      await this.database.getUser().then((data: any) => {
+      await this.database.getUser().then((data: User) => {
         this.role = data.role;
       });
     } catch (error) {
