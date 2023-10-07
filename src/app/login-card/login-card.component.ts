@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginCardComponent {
 
-  companyId: string = '314272';
-  userId: string = '256144';
+  companyId: string = '';
+  userId: string = '';
 
   constructor(
     private apiService: ApiServicesService,
