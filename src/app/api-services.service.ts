@@ -19,6 +19,17 @@ export class ApiServicesService {
 
   constructor(private http: HttpClient, private database: DatabaseService) { }
 
+  private headers(): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+      Conection: 'keep-alive',
+      Accept: '*/*',
+      'Cache-Control': 'no-cache',
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
+  }
+
   private getToken(companyId: string, userId: string): void {
     try {
       window.location.assign(`${this.baseUrl}/api/login?companyId=${companyId}&userId=${userId}`);
@@ -43,14 +54,7 @@ export class ApiServicesService {
 
   async getEnterprise(companyId: string): Promise<any> {
     try {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${this.token}`,
-        Conection: 'keep-alive',
-        Accept: '*/*',
-        'Cache-Control': 'no-cache',
-        'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      });
+      const headers = this.headers();
       const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/enterprises/${companyId}`, { headers }));
 
       return response;
@@ -61,17 +65,9 @@ export class ApiServicesService {
 
   async getUser(companyId: string, userId: string): Promise<any> {
     try {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${this.token}`,
-        Conection: 'keep-alive',
-        Accept: '*/*',
-        'Cache-Control': 'no-cache',
-        'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      });
+      const headers = this.headers();
       const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/users/${companyId}/${userId}`, { headers }));
 
-      console.log(response);
       return response;
     } catch (error) {
       throw error;
