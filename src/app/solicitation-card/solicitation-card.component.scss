@@ -5,3 +5,47 @@
   border: none;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.badge {
+  top: 0;
+  right: 0;
+  position: absolute;
+  background-color: red;
+  color: white;
+  font-size: 0.7em;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  right: 0;
+  max-width: 50px;
+  max-height: 20px;
+  align-items: flex-start;
+}
+
+p {
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  margin-left: calc(50% - 50px);
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+i {
+  font-size: 20px;
+  padding: 5px;
+}

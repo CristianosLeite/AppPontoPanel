@@ -1,48 +1,84 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './interafaces/user.interface';
-import { Enterprise } from './interafaces/enterprise.interface';
 import { lastValueFrom } from 'rxjs';
-
+import { Enterprise } from './interafaces/enterprise.interface';
+import { User } from './interafaces/user.interface';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServicesService {
+
+  baseUrl = isDevMode() ? 'http://localhost:3000' : 'https://app-ponto-82a9efa89434.herokuapp.com';
+
+  token: string | undefined;
+
   user = {} as User;
   enterprise = {} as Enterprise;
-  token: string | null = null;
 
-  headers = new HttpHeaders({
-    Authorization: `Bearer ${this.token}`,
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache',
-    Conection: 'keep-alive',
-    Accept: '*/*',
-  });
+  constructor(private http: HttpClient, private database: DatabaseService) { }
 
-  constructor(private http: HttpClient) { }
-
-  async testApi(): Promise<string> {
+  private getToken(companyId: string, userId: string): void {
     try {
-      const apiStatus = await lastValueFrom(this.http.get('https://app-ponto-82a9efa89434.herokuapp.com/api/test-api', { responseType: 'text' }));
-      return apiStatus;
+      window.location.assign(`${this.baseUrl}/api/login?companyId=${companyId}&userId=${userId}`);
     }
     catch (error) {
-      console.log(error);
-      return 'error';
+      throw error;
+    }
+  }
+
+  async validateToken(): Promise<object> {
+    try{
+      const response: any = await lastValueFrom(
+        this.http.post(`${this.baseUrl}/api/login/validate-token`, null, { withCredentials: true })
+      );
+
+      await this.database.saveUser(response.user);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getEnterprise(companyId: string): Promise<any> {
+    try {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${this.token}`,
+        Conection: 'keep-alive',
+        Accept: '*/*',
+        'Cache-Control': 'no-cache',
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      });
+      const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/enterprises/${companyId}`, { headers }));
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUser(companyId: string, userId: string): Promise<any> {
+    try {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${this.token}`,
+        Conection: 'keep-alive',
+        Accept: '*/*',
+        'Cache-Control': 'no-cache',
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      });
+      const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/users/${companyId}/${userId}`, { headers }));
+
+      console.log(response);
+      return response;
+    } catch (error) {
+      throw error;
     }
   }
 
   async login(companyId: string, userId: string): Promise<any> {
-    try {
-      const response = await lastValueFrom(this.http.post(
-        `https://app-ponto-82a9efa89434.herokuapp.com/api/login?companyId=${companyId}&userId=${userId}`, { responseType: 'json' }));
-      return response;
-  }
-    catch (error) {
-      console.log(error);
-      return {error};
-    }
+    this.getToken(companyId, userId);
   }
 }

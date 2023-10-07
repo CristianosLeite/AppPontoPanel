@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../interafaces/user.interface';
 import { ApiServicesService } from '../api-services.service';
 import { DatabaseService } from '../database.service';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-card',
@@ -12,27 +10,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginCardComponent {
 
-  user = {} as User;
-  companyId: string = '';
-  userId: string = '';
+  companyId: string = '314272';
+  userId: string = '256144';
 
   constructor(
     private apiService: ApiServicesService,
-    private databaseService: DatabaseService,
     private router: Router,
-    private route: ActivatedRoute
+    private database: DatabaseService
   ) { }
 
-  requestLogin() {
-    this.apiService.login(this.companyId, this.userId).then(async (response) => {
-      if (response) {
-        this.user = response.user;
-        await this.databaseService.saveUser(this.user);
-        this.router.navigate(['/home'], {relativeTo: this.route});
-      }
+  async requestLogin() {
+    try {
+      await this.apiService.login(this.companyId, this.userId).then(async (response: any) => {
+        response ? this.router.navigate(['/home']) : this.navigate();
+      });
+      } catch (error) {
+      throw error;
     }
-    ).catch((error) => {
-      console.log(error);
-    });
+  }
+
+  navigate() {
+    window.location.href = `${this.apiService.baseUrl}/api/login?companyId=${this.companyId}&userId=${this.userId}`;
   }
 }

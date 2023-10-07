@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { User } from '../interafaces/user.interface';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 
@@ -10,8 +9,6 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class LoginPopoverComponent {
   @ViewChild('childModal', { static: false }) childModal?: ModalDirective;
-
-  user = {} as User;
 
   showChildModal(): void {
     this.childModal?.show();

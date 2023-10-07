@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { DatabaseService } from '../database.service';
-import { User } from '../interafaces/user.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
 
-  role: string = 'manager';
+  role = sessionStorage.getItem('role');
 
-  constructor(
-    private databaseService: DatabaseService
-  ) {}
+  constructor(private readonly database: DatabaseService) {};
 
-  async ngOnInit() {
-    await this.getUser();
+  async ngOnInit(): Promise<void> {
+    await this.getRole();
   }
 
-  async getUser() {
-    await this.databaseService.getUser();
+  ngOnChanges(): void {
+    sessionStorage.setItem('role', this.role!.toString());
+    window.location.reload();
+  }
+
+  async getRole(): Promise<void> {
+    try {
+      await this.database.getUser().then((data: any) => {
+        this.role = data.role;
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 }

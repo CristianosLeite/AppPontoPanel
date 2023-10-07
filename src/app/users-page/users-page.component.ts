@@ -33,7 +33,7 @@ export class UsersPageComponent {
       Conection: 'keep-alive',
       Accept: '*/*',
     });
-    await lastValueFrom(this.http.get(`localhost:3000/api/login/loginEnterprise?companyId=${companyId}`, {headers})).then((data: any) => {
+    await lastValueFrom(this.http.get(`https://app-ponto-82a9efa89434.herokuapp.com/api/login/loginEnterprise?companyId=${companyId}`, {headers})).then((data: any) => {
       this.userEnterprise = data;
     });
   }
@@ -46,7 +46,7 @@ export class UsersPageComponent {
       Conection: 'keep-alive',
       Accept: '*/*',
     });
-    this.http.get('http://localhost:3000/api/users/314272', {headers}).subscribe((data: any) => {
+    this.http.get('https://app-ponto-82a9efa89434.herokuapp.com/api/users/314272', {headers}).subscribe((data: any) => {
       this.users = data;
     });
   }
@@ -59,7 +59,7 @@ export class UsersPageComponent {
       Conection: 'keep-alive',
       Accept: '*/*',
     });
-    await lastValueFrom(this.http.delete(`http://localhost:3000/api/users/${userId}`, {headers})).then((data: any) => {
+    await lastValueFrom(this.http.delete(`https://app-ponto-82a9efa89434.herokuapp.com/api/users/${userId}`, {headers})).then((data: any) => {
       console.log(data);
     });
   }
@@ -72,7 +72,7 @@ export class UsersPageComponent {
       Conection: 'keep-alive',
       Accept: '*/*',
     });
-    await lastValueFrom(this.http.post('http://localhost:3000/api/users', {headers})).then((data: any) => {
+    await lastValueFrom(this.http.post('https://app-ponto-82a9efa89434.herokuapp.com/api/users', {headers})).then((data: any) => {
       console.log(data);
     });
   }
@@ -85,7 +85,7 @@ export class UsersPageComponent {
       Conection: 'keep-alive',
       Accept: '*/*',
     });
-    await lastValueFrom(this.http.put(`http://localhost:3000/api/users/${userId}`, {headers})).then((data: any) => {
+    await lastValueFrom(this.http.put(`https://app-ponto-82a9efa89434.herokuapp.com/api/users/${userId}`, {headers})).then((data: any) => {
       console.log(data);
     });
   }

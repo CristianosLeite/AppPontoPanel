@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './home/admin/admin.component';
 import { UserComponent } from './home/user/user.component';
 import { ManagerComponent } from './home/manager/manager.component';
-import { LoginPageComponent } from './login-page/login-page.component'
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +18,11 @@ const routes: Routes = [
         component: SaibaMaisAppPontoComponent,
       },
     ],
+  },
+
+  {
+    path: 'login',
+    redirectTo: 'http://localhost:3000/api/login/',
   },
 
   {
@@ -39,6 +44,7 @@ const routes: Routes = [
       },
     ],
   },
+
 ];
 
 @NgModule({

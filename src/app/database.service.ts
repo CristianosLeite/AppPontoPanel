@@ -13,8 +13,8 @@ export class DatabaseService extends Dexie {
   constructor() {
     super('PontoDatabase');
     this.version(1).stores({
-      user: 'userId, companyId, name, role, token',
-      enterprise: 'companyId, enterprise, register'
+      user: '++id, name, role',
+      enterprise: '++id, companyId, enterprise, register'
     });
   }
 
@@ -27,11 +27,11 @@ export class DatabaseService extends Dexie {
   }
 
   async getUser(): Promise<User> {
-    return await this.table('user').get(1);
+    return await this.table('user').where('id').equals(1).first();
   }
 
   async getEnterprise(): Promise<Enterprise> {
-    return await this.table('enterprise').get(1);
+    return await this.table('enterprise').where('id').equals(1).first();
   }
 
   async destroyDatabase(): Promise<void> {

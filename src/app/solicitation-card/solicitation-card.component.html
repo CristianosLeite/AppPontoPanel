@@ -1,3 +1,13 @@
 <div class="container card">
-  <p>solicitation-card works!</p>
+  <div class="header">
+    <p>Solicitações</p>
+    <div class="icon-container">
+      <i class="bi bi-bell-fill icon"></i>
+      <span class="badge" *ngIf="counter > 0">{{counter}}</span>
+    </div>
+  </div>
+  <a class="card-text" routerLink="/pendings" *ngIf="counter > 0">Você possui {{counter}} {{counter > 1 ? 'solicitações.'
+    : 'solicitação.'}}
+  </a>
+  <a class="card-text" routerLink="/pendings" *ngIf="counter === 0">Você não possui solicitações.</a>
 </div>
