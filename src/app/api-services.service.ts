@@ -77,4 +77,14 @@ export class ApiServicesService {
   async login(companyId: string, userId: string): Promise<any> {
     this.getToken(companyId, userId);
   }
+
+  logout(): void {
+    try {
+      window.location.assign(`${this.baseUrl}/api/logout`);
+      this.token = undefined;
+    }
+    catch (error) {
+      throw error;
+    }
+  }
 }

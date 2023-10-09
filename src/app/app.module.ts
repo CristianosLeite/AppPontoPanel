@@ -1,9 +1,8 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { EnterprisesComponent } from './enterprises/enterprises.component';
@@ -34,6 +33,8 @@ import { ManagerComponent } from './home/manager/manager.component';
 import { SolicitationCardComponent } from './solicitation-card/solicitation-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { PendingsPageComponent } from './pendings-page/pendings-page.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -65,17 +66,18 @@ import { PendingsPageComponent } from './pendings-page/pendings-page.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     FormsModule,
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
     ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
 
-  providers: [BsModalService, NgForm],
+  providers: [BsModalService, NgForm, BsDropdownDirective],
 
   bootstrap: [AppComponent]
 })
