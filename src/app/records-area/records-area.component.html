@@ -12,12 +12,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let record of records">
-        <th scope="row"><div class="circle-green" *ngIf="record.status"></div>
-          <div class="circle-red" *ngIf="!record.status && record.status !== null"></div>
-          <div class="circle-orange" *ngIf="record.status === null"></div>
+        <th scope="row"><div class="circle-green" *ngIf="record.date"></div>
+          <div class="circle-red" *ngIf="!record.date && record.date !== newDate"></div>
+          <div class="circle-orange" *ngIf="record.date === newDate"></div>
         </th>
-        <td>{{record.name}}</td>
-        <td>{{record.recordType[0] + ' - ' + record.recordType[1]}}</td>
+        <td>{{record.employee}}</td>
+        <td>{{record.arrivedAt + ' - ' + record.leftAt }}</td>
         <td>{{record.extraHours}}</td>
         <td>{{record.missingHours}}</td>
         <td>{{record.balance}}</td>

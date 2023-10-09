@@ -13,7 +13,7 @@ export class DatabaseService extends Dexie {
   constructor() {
     super('PontoDatabase');
     this.version(1).stores({
-      user: '++id, name, role',
+      user: '++id, companyId, name, role',
       enterprise: '++id, companyId, enterprise, register'
     });
   }

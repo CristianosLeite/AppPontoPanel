@@ -6,4 +6,11 @@ export interface Record {
   date: string;
   records: [{ [key: string]: number}];
   workedHours?: string;
+
+  arrivedAt: string;
+  leftAt: string;
+  workedTime: string;
+  extraHours: string;
+  missingHours: string;
+  balance: string;
 }

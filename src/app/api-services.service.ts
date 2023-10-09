@@ -12,16 +12,17 @@ export class ApiServicesService {
 
   baseUrl = isDevMode() ? 'http://localhost:3000' : 'https://app-ponto-82a9efa89434.herokuapp.com';
 
-  token: string | undefined;
-
   user = {} as User;
   enterprise = {} as Enterprise;
 
   constructor(private http: HttpClient, private database: DatabaseService) { }
 
-  private headers(): HttpHeaders {
+  private async headers(): Promise<HttpHeaders> {
+    const token = await this.validateToken().then((response: any) => {
+      return response.token;
+    });
     return new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
+      Authorization: `Bearer ${token}`,
       Conection: 'keep-alive',
       Accept: '*/*',
       'Cache-Control': 'no-cache',
@@ -40,12 +41,13 @@ export class ApiServicesService {
   }
 
   async validateToken(): Promise<object> {
-    try{
+    try {
       const response: any = await lastValueFrom(
         this.http.post(`${this.baseUrl}/api/login/validate-token`, null, { withCredentials: true })
       );
 
       await this.database.saveUser(response.user);
+
       return response;
     } catch (error) {
       throw error;
@@ -54,8 +56,10 @@ export class ApiServicesService {
 
   async getEnterprise(companyId: string): Promise<any> {
     try {
-      const headers = this.headers();
-      const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/enterprises/${companyId}`, { headers }));
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/enterprises/${companyId}`, { headers })
+      );
 
       return response;
     } catch (error) {
@@ -63,10 +67,14 @@ export class ApiServicesService {
     }
   }
 
-  async getUser(companyId: string, userId: string): Promise<any> {
+  async getUsers(companyId: string, userId?: string): Promise<any> {
     try {
-      const headers = this.headers();
-      const response: any = await lastValueFrom(this.http.get(`${this.baseUrl}/api/users/${companyId}/${userId}`, { headers }));
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        userId ?
+        this.http.get(`${this.baseUrl}/api/users/${companyId}/${userId}`, { headers }) :
+        this.http.get(`${this.baseUrl}/api/users/${companyId}`, { headers })
+      );
 
       return response;
     } catch (error) {
@@ -81,7 +89,8 @@ export class ApiServicesService {
   logout(): void {
     try {
       window.location.assign(`${this.baseUrl}/api/logout`);
-      this.token = undefined;
+      sessionStorage.clear();
+      this.database.destroyDatabase();
     }
     catch (error) {
       throw error;
