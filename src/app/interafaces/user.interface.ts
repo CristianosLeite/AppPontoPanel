@@ -16,4 +16,6 @@ export interface User {
   emails: Email[];
   records: Record[];
   token: string;
+  status: boolean;
+  dayRecord: Record;
 }

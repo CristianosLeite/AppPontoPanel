@@ -11,16 +11,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of records">
-        <th scope="row"><div class="circle-green" *ngIf="record.date"></div>
-          <div class="circle-red" *ngIf="!record.date && record.date !== newDate"></div>
-          <div class="circle-orange" *ngIf="record.date === newDate"></div>
+      <tr *ngFor="let user of users">
+        <th scope="row"><div class="circle-green" *ngIf="user.status === true"></div>
+          <div class="circle-red" *ngIf="user.status === false"></div>
+          <div class="circle-orange" *ngIf="user.status === null"></div>
         </th>
-        <td>{{record.employee}}</td>
-        <td>{{record.arrivedAt + ' - ' + record.leftAt }}</td>
-        <td>{{record.extraHours}}</td>
-        <td>{{record.missingHours}}</td>
-        <td>{{record.balance}}</td>
+        <td>{{user.firstName + ' ' + user.lastName}}</td>
+        <td>{{user.dayRecord.arrivedAt + ' - ' + user.dayRecord.leftAt }}</td>
+        <td>{{user.dayRecord.extraHours}}</td>
+        <td>{{user.dayRecord.missingHours}}</td>
+        <td>{{user.dayRecord.balance}}</td>
       </tr>
   </table>
 </div>
