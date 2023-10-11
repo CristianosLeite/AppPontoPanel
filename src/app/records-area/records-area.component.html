@@ -17,10 +17,14 @@
           <div class="circle-orange" *ngIf="user.status === null"></div>
         </th>
         <td>{{user.firstName + ' ' + user.lastName}}</td>
-        <td>{{user.dayRecord.arrivedAt + ' - ' + user.dayRecord.leftAt }}</td>
-        <td>{{user.dayRecord.extraHours}}</td>
-        <td>{{user.dayRecord.missingHours}}</td>
-        <td>{{user.dayRecord.balance}}</td>
+        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.arrivedAt + ' - ' + user.dayRecord.leftAt }}</td>
+        <td *ngIf="user.status === false">Sem registro</td>
+        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.extraHours}}</td>
+        <td *ngIf="user.status === false">00:00</td>
+        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.missingHours}}</td>
+        <td *ngIf="user.status === false">00:00</td>
+        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.balance}}</td>
+        <td *ngIf="user.status === false">00:00</td>
       </tr>
   </table>
 </div>
