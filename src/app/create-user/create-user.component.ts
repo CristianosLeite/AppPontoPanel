@@ -35,9 +35,9 @@ export class CreateUserComponent implements OnInit {
     const mask = '###.###.###-##';
     const maskedValue = this.applyMask(value, mask);
     event.target.value = maskedValue;
-    this.validateCpf(this.newUser.registerNumber) ?
-      this.newUser.registerNumber = maskedValue :
-      this.newUser.registerNumber = '';
+    this.validateCpf(this.newUser.register_number) ?
+      this.newUser.register_number = maskedValue :
+      this.newUser.register_number = '';
   }
 
   applyMask(value: any, mask: string) {

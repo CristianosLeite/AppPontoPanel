@@ -67,13 +67,48 @@ export class ApiServicesService {
     }
   }
 
-  async getUsers(companyId: string, userId?: string): Promise<any> {
+  async getSelfUser() {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
-        userId ?
-        this.http.get(`${this.baseUrl}/api/users/${companyId}/${userId}`, { headers }) :
-        this.http.get(`${this.baseUrl}/api/users/${companyId}`, { headers })
+        this.http.get(`${this.baseUrl}/api/users/one`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {}
+  }
+
+  async getAllUsers(): Promise<any> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/users/all`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAllRecordsByDate(date: string): Promise<any> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/records/all?date=${date}`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAllRecords(): Promise<any> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/records/all`, { headers, withCredentials: true })
       );
 
       return response;

@@ -1,5 +1,5 @@
-<div class="container card">
-  <table class="table table-borderless table-striped">
+<div class="container card" [@loadingCard]="loaded ? 'loaded' : 'loading'">
+  <table class="table table-borderless table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -7,24 +7,43 @@
         <th scope="col">Entrada / Saída</th>
         <th scope="col">Horas extras</th>
         <th scope="col">Horas faltantes</th>
-        <th scope="col">Saldo</th>
+        <th scope="col">Horas trabalhadas</th>
+        <th scope="col">Ação</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <th scope="row"><div class="circle-green" *ngIf="user.status === true"></div>
+        <!-- # -->
+        <th scope="row">
+          <div class="circle-green" *ngIf="user.status === true"></div>
           <div class="circle-red" *ngIf="user.status === false"></div>
           <div class="circle-orange" *ngIf="user.status === null"></div>
         </th>
-        <td>{{user.firstName + ' ' + user.lastName}}</td>
-        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.arrivedAt + ' - ' + user.dayRecord.leftAt }}</td>
+        <!-- Funcionário -->
+        <td>{{user.first_name + ' ' + user.last_name}}</td>
+        <!-- Entrada / Saída -->
+        <td *ngIf="user.status === true || user.status === null">
+          {{user?.arrivedAt + ' - ' + user?.leftAt}}</td>
         <td *ngIf="user.status === false">Sem registro</td>
-        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.extraHours}}</td>
+        <!-- Horas extras -->
+        <td *ngIf="user.status === true || user.status === null">{{user?.extraHours}}</td>
         <td *ngIf="user.status === false">00:00</td>
-        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.missingHours}}</td>
+        <!-- Horas faltantes -->
+        <td *ngIf="user.status === true || user.status === null">{{user?.missingHours()}}</td>
         <td *ngIf="user.status === false">00:00</td>
-        <td *ngIf="user.status === true || user.status === null">{{user.dayRecord.balance}}</td>
+        <!-- Saldo -->
+        <td *ngIf="user.status === true || user.status === null">{{user?.totalHours()}}</td>
         <td *ngIf="user.status === false">00:00</td>
+        <!-- Ação -->
+        <td *ngIf="user.status === true">
+          <button class="btn btn-primary" (click)="openModal(user)">Registrar saída</button>
+        </td>
+        <td *ngIf="user.status === false">
+          <button class="btn btn-danger" (click)="openModal(user)">Registrar falta</button>
+        </td>
+        <td *ngIf="user.status === null">
+          <button class="btn btn-success" (click)="openModal(user)">Ver Registros</button>
+        </td>
       </tr>
   </table>
 </div>

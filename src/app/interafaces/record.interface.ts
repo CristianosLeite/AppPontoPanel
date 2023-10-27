@@ -1,16 +1,15 @@
-export interface Record {
-  recordId: string;
-  companyId: string;
-  userId: string;
-  employee: string;
-  date: string;
-  records: [{ [key: string]: number}];
-  workedHours?: string;
+import { HoursBank } from "./hours-bank.interface";
 
-  arrivedAt: string;
-  leftAt: string;
-  workedTime: string;
-  extraHours: string;
-  missingHours: string;
-  balance: string;
+export interface Record {
+  record_id: string;
+  company_id: string;
+  user_id: string;
+  record_date: string;
+  record_time: string;
+  worked_location?: string;
+  record_photo?: string;
+  record_status?: string;
+  created_at?: string;
+  hours_bank: HoursBank[];
+  intervals?: [{key: string, value: string }];
 }
