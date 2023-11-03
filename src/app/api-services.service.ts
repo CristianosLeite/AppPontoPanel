@@ -8,7 +8,7 @@ import { DatabaseService } from './database.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiServicesService {
+export class ApiServices {
 
   baseUrl = isDevMode() ? 'http://localhost:3000' : 'https://app-ponto-82a9efa89434.herokuapp.com';
 
@@ -128,6 +128,19 @@ export class ApiServicesService {
       this.database.destroyDatabase();
     }
     catch (error) {
+      throw error;
+    }
+  }
+
+  async getSelfPendings(): Promise<any> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/pendings/user`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
       throw error;
     }
   }

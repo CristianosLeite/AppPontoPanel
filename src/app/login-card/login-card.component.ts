@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiServicesService } from '../api-services.service';
+import { ApiServices } from '../api-services.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginCardComponent {
   userId: string = '';
 
   constructor(
-    private apiService: ApiServicesService,
+    private apiService: ApiServices,
     private router: Router,
   ) { }
 

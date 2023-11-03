@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServicesService } from '../api-services.service';
+import { ApiServices } from '../api-services.service';
 import { Router } from '@angular/router';
 
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   constructor(
-    private readonly apiService: ApiServicesService,
+    private readonly apiService: ApiServices,
     private readonly router: Router,
   ) { }
 

@@ -1,44 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Pendings } from '../interafaces/pendings.interface';
+import { ApiServices } from '../api-services.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pending-card',
   templateUrl: './pending-card.component.html',
   styleUrls: ['./pending-card.component.scss']
 })
-export class PendingCardComponent implements OnInit {
+export class PendingCardComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
 
   counter = 0;
 
-  pendings = [
-    {
-      "id": "1",
-      "applicant": "Flávia",
-      "date": "04/10/2023",
-      "request": "signature",
-      "status": "pending",
-      "data": {
-        "employee": "Cristiano",
-        "message": "Pendente asssinatura de folha de ponto"
-      }
-    },
+  pendings = [] as Pendings[];
 
-    {
-      "id": "2",
-      "applicant": "Flávia",
-      "date": "04/09/2023",
-      "request": "signature",
-      "status": "done",
-      "data": {
-        "employee": "Cristiano",
-        "message": "Pendente asssinatura de folha de ponto"
-      }
-    }
-  ]
+  constructor(private readonly apiServices: ApiServices) {
+    this.subscription.add(interval(300000).subscribe(async () => { // Atualiza o componente a cada 5 minutos.
+      await this.getPending();
+      this.checkForPendings();
+    }));
+  }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getPending();
     this.checkForPendings();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   checkForPendings() {
@@ -47,6 +37,12 @@ export class PendingCardComponent implements OnInit {
       if (pending.status === 'pending') {
         this.counter++;
       }
+    });
+  }
+
+  async getPending() {
+    await this.apiServices.getSelfPendings().then((response: Pendings[]) => {
+      this.pendings = response;
     });
   }
 }

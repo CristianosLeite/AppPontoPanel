@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
-import { ApiServicesService } from '../api-services.service';
+import { ApiServices } from '../api-services.service';
 import { DatabaseService } from '../database.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   userName: string = '';
 
-  constructor(private readonly api: ApiServicesService, private readonly database: DatabaseService) { }
+  constructor(private readonly api: ApiServices, private readonly database: DatabaseService) { }
 
   ngOnInit(): void {
     this.getUserName();
