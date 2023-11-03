@@ -46,7 +46,6 @@ export class ApiServicesService {
         this.http.post(`${this.baseUrl}/api/login/validate-token`, null, { withCredentials: true })
       );
 
-      console.log(response);
       await this.database.saveUser(response.user);
 
       return response;
