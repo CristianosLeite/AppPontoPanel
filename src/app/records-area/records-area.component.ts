@@ -34,6 +34,7 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   date = new Date().toUTCString();
+  loggedUser = {} as User;
   users = [] as User[];
   records = [] as Record[];
 
@@ -42,6 +43,10 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private readonly api: ApiServicesService) { }
 
   async ngOnInit() {
+    await this.api.getSelfUser().then((response: User) => {
+      console.log(response);
+      this.loggedUser = response;
+    });
     await this.getUsers();
     await this.getRecords();
     this.loadRecordsArea();

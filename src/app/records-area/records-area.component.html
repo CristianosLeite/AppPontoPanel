@@ -38,8 +38,11 @@
         <td *ngIf="user.status === true">
           <button class="btn btn-primary" (click)="openModal(user)">Registrar saída</button>
         </td>
-        <td *ngIf="user.status === false">
+        <td *ngIf="user.status === false && loggedUser.user_id !== user.user_id">
           <button class="btn btn-danger" (click)="openModal(user)">Registrar falta</button>
+        </td>
+        <td *ngIf="user.status === false && loggedUser.user_id === user.user_id">
+          <button class="btn btn-success" disabled>Registrar ponto</button>
         </td>
         <td *ngIf="user.status === null">
           <button class="btn btn-success" (click)="openModal(user)">Ver Registros</button>

@@ -46,6 +46,7 @@ export class ApiServicesService {
         this.http.post(`${this.baseUrl}/api/login/validate-token`, null, { withCredentials: true })
       );
 
+      console.log(response);
       await this.database.saveUser(response.user);
 
       return response;
@@ -71,7 +72,7 @@ export class ApiServicesService {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
-        this.http.get(`${this.baseUrl}/api/users/one`, { headers, withCredentials: true })
+        this.http.get(`${this.baseUrl}/api/users/user`, { headers, withCredentials: true })
       );
 
       return response;
