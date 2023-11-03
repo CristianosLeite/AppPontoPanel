@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { ApiServicesService } from '../api-services.service';
+import { ApiServices } from '../api-services.service';
 import { Record } from '../interafaces/record.interface';
 import { User } from '../interafaces/user.interface';
 import { interval, Subscription } from 'rxjs';
@@ -40,11 +40,10 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
 
   loaded: boolean = false;
 
-  constructor(private readonly api: ApiServicesService) { }
+  constructor(private readonly api: ApiServices) { }
 
   async ngOnInit() {
     await this.api.getSelfUser().then((response: User) => {
-      console.log(response);
       this.loggedUser = response;
     });
     await this.getUsers();
