@@ -45,3 +45,8 @@
   min-width: 150px;
   justify-content: center;
 }
+
+.scrollable-component {
+  height: 350px;
+  overflow-y: auto; /* Isso adicionará a barra de rolagem vertical se o conteúdo exceder a altura */
+}

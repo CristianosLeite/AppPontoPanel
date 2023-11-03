@@ -1,4 +1,4 @@
-<div class="container card" [@loadingCard]="loaded ? 'loaded' : 'loading'">
+<div class="container card scrollable-component" [@loadingCard]="loaded ? 'loaded' : 'loading'">
   <table class="table table-borderless table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
     <thead>
       <tr>
@@ -27,13 +27,13 @@
         <td *ngIf="user.status === false">Sem registro</td>
         <!-- Horas extras -->
         <td *ngIf="user.status === true || user.status === null">{{user?.extraHours}}</td>
-        <td *ngIf="user.status === false">00:00</td>
+        <td *ngIf="user.status === false">00:00:00</td>
         <!-- Horas faltantes -->
         <td *ngIf="user.status === true || user.status === null">{{user?.missingHours()}}</td>
-        <td *ngIf="user.status === false">00:00</td>
+        <td *ngIf="user.status === false">00:00:00</td>
         <!-- Saldo -->
         <td *ngIf="user.status === true || user.status === null">{{user?.totalHours()}}</td>
-        <td *ngIf="user.status === false">00:00</td>
+        <td *ngIf="user.status === false">00:00:00</td>
         <!-- Ação -->
         <td *ngIf="user.status === true">
           <button class="btn btn-primary" (click)="openModal(user)">Registrar saída</button>
