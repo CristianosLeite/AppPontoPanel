@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Dexie, { Table } from 'dexie';
-import { User } from './interafaces/user.interface';
-import { Enterprise } from './interafaces/enterprise.interface';
+import { User } from '../interafaces/user.interface';
+import { Enterprise } from '../interafaces/enterprise.interface';
 
 @Injectable({
   providedIn: 'root'

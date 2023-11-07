@@ -26,7 +26,7 @@
           {{user?.arrivedAt + ' - ' + user?.leftAt}}</td>
         <td *ngIf="user.status === false">Sem registro</td>
         <!-- Horas extras -->
-        <td *ngIf="user.status === true || user.status === null">{{user?.extraHours}}</td>
+        <td *ngIf="user.status === true || user.status === null">{{user?.extraHours()}}</td>
         <td *ngIf="user.status === false">00:00:00</td>
         <!-- Horas faltantes -->
         <td *ngIf="user.status === true || user.status === null">{{user?.missingHours()}}</td>

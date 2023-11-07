@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Pendings } from '../interafaces/pendings.interface';
-import { ApiServices } from '../api-services.service';
+import { Pendings } from '../../interafaces/pendings.interface';
+import { ApiServices } from '../../services/api-services.service';
 import { interval, Subscription } from 'rxjs';
 
 @Component({

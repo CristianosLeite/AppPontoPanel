@@ -1,4 +1,4 @@
-import { User } from './../interafaces/user.interface';
+import { User } from '../../interafaces/user.interface';
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgForm } from '@angular/forms';

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { CreateUserComponent } from '../create-user/create-user.component';
-import { AddEmailComponent } from '../add-user-information/add-email/add-email.component';
-import { AddAdressComponent } from '../add-user-information/add-adress/add-adress.component';
-import { AddPhoneComponent } from '../add-user-information/add-phone/add-phone.component';
+import { CreateUserComponent } from '../../components/create-user/create-user.component';
+import { AddEmailComponent } from '../../components/add-user-information/add-email/add-email.component';
+import { AddAdressComponent } from '../../components/add-user-information/add-adress/add-adress.component';
+import { AddPhoneComponent } from '../../components/add-user-information/add-phone/add-phone.component';
 
 @Component({
   selector: 'app-users-page',

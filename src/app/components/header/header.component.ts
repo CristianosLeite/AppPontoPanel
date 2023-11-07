@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
-import { ApiServices } from '../api-services.service';
-import { DatabaseService } from '../database.service';
+import { ApiServices } from '../../services/api-services.service';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-header',

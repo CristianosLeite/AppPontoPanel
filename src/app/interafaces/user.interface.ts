@@ -19,7 +19,7 @@ export interface User {
 
   arrivedAt?: string;
   leftAt?: string;
-  extraHours?: string;
+  extraHours: () => string;
   missingHours: () => string;
   totalHours: () => string;
 }
