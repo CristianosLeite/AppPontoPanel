@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginCardComponent {
 
-  companyId: string = '';
-  userId: string = '';
+  cod_company: string = '';
+  cod_user: string = '';
 
   constructor(
     private apiService: ApiServices,
@@ -19,7 +19,7 @@ export class LoginCardComponent {
 
   async requestLogin() {
     try {
-      await this.apiService.login(this.companyId, this.userId).then(async (response: any) => {
+      await this.apiService.login(this.cod_company, this.cod_user).then(async (response: any) => {
         response ? this.router.navigate(['/home']) : this.navigate();
       });
       } catch (error) {
@@ -28,6 +28,6 @@ export class LoginCardComponent {
   }
 
   navigate() {
-    window.location.href = `${this.apiService.baseUrl}/api/login?companyId=${this.companyId}&userId=${this.userId}`;
+    window.location.href = `${this.apiService.baseUrl}/api/login?cod_company=${this.cod_company}&cod_user=${this.cod_user}`;
   }
 }
