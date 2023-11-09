@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { Enterprise } from '../interafaces/enterprise.interface';
 import { User } from '../interafaces/user.interface';
 import { DatabaseService } from './database.service';
+import { Record } from '../interafaces/record.interface';
 
 
 /**
@@ -26,6 +27,12 @@ export class ApiServices {
 
   constructor(private http: HttpClient, private database: DatabaseService) { }
 
+  /**
+   * @description Retorna o cabeçalho da requisição.
+   * @returns Retorna um objeto HttpHeaders.
+   * @throws Retorna um erro caso não seja possível buscar o cabeçalho.
+   * @param token Token de autenticação.
+  */
   private async headers(): Promise<HttpHeaders> {
     const token = await this.validateToken().then((response: any) => {
       return response.token;
@@ -40,9 +47,14 @@ export class ApiServices {
     });
   }
 
-  private getToken(companyId: string, userId: string): void {
+  /**
+   * @description Redireciona o usuário para a página de autenticação.
+   * @param cod_company Código da empresa.
+   * @param cod_user Código do usuário.
+  */
+  private getToken(cod_company: string, cod_user: string): void {
     try {
-      window.location.assign(`${this.baseUrl}/api/login?companyId=${companyId}&userId=${userId}`);
+      window.location.assign(`${this.baseUrl}/api/login?cod_company=${cod_company}&cod_user=${cod_user}`);
     }
     catch (error) {
       throw error;
@@ -63,7 +75,7 @@ export class ApiServices {
     }
   }
 
-  async getEnterprise(companyId: string): Promise<any> {
+  async getEnterprise(companyId: string): Promise<Enterprise> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -79,7 +91,7 @@ export class ApiServices {
   /**
    * @returns Retorna o usuário logado.
    */
-  async getSelfUser() {
+  async getSelfUser(): Promise<User> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -87,7 +99,9 @@ export class ApiServices {
       );
 
       return response;
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
 
   /**
@@ -95,7 +109,7 @@ export class ApiServices {
    * @returns Retorna um array de objetos do tipo User.
    * @throws Retorna um erro caso não seja possível buscar os usuários.
    */
-  async getAllUsers(): Promise<any> {
+  async getAllUsers(): Promise<User[]> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -108,7 +122,12 @@ export class ApiServices {
     }
   }
 
-  async getAllRecordsByDate(date: string): Promise<any> {
+  /**
+   * @description Busca todos os registros de ponto cadastrados no sistema por data.
+   * @returns Retorna um array de objetos do tipo Record.
+   * @throws Retorna um erro caso não seja possível buscar os registros de ponto.
+   */
+  async getAllRecordsByDate(date: string): Promise<Record[]> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -121,7 +140,12 @@ export class ApiServices {
     }
   }
 
-  async getAllRecords(): Promise<any> {
+  /**
+   * @description Busca todos os registros de ponto cadastrados no sistema.
+   * @returns Retorna um array de objetos do tipo Record.
+   * @throws Retorna um erro caso não seja possível buscar os registros de ponto.
+   */
+  async getAllRecords(): Promise<Record[]> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -134,10 +158,18 @@ export class ApiServices {
     }
   }
 
-  async login(companyId: string, userId: string): Promise<any> {
-    this.getToken(companyId, userId);
+  /**
+   * Realiza o login do usuário.
+   * @param cod_company
+   * @param cod_user
+   */
+  async login(cod_company: string, cod_user: string): Promise<void> {
+    this.getToken(cod_company, cod_user);
   }
 
+  /**
+   * Realiza o logout do usuário.
+   */
   logout(): void {
     try {
       window.location.assign(`${this.baseUrl}/api/logout`);
