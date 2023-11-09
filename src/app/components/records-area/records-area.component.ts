@@ -6,7 +6,14 @@ import { User } from '../../interafaces/user.interface';
 import { interval, Subscription } from 'rxjs';
 import { RecordsService } from 'src/app/services/records.service';
 
-
+/**
+ * @description Exibe registro de ponto de todos os usuários na tela inicial do painel do gestor.
+ * @param date Data atual
+ * @param loggedUser Usuário logado
+ * @param users Usuários cadastrados no sistema
+ * @param records Registros de ponto cadastrados no sistema
+ * @param loaded Indica se os registros de ponto já foram carregados
+ */
 @Component({
   selector: 'app-records-area',
   templateUrl: './records-area.component.html',
@@ -47,10 +54,9 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
     await this.api.getSelfUser().then((response: User) => {
       this.loggedUser = response;
     });
-    await this.getUsers();
-    await this.getRecords();
+    await Promise.all([this.getUsers(), this.getRecords()]);
     this.loadRecordsArea();
-    this.subscription.add(interval(60000).subscribe(async () => { // Atualiza o componente a cada 1 minuto.
+    this.subscription.add(interval(60000).subscribe(async () => { //Intervalo de 1 minuto
       await this.getRecords();
       this.loadRecordsArea();
     }));
@@ -64,32 +70,34 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * @description Busca todos os usuários cadastrados no sistema.
+  */
   async getUsers() {
-    try {
-      await this.api.getAllUsers().then((response: User[]) => {
-        this.users = response;
-      });
-    } catch (error) {
-      throw error;
-    }
+    await this.api.getAllUsers().then((response: User[]) => {
+      this.users = response;
+    });
   }
 
+  /**
+   * @description Busca todos os registros de ponto cadastrados no sistema.
+  */
   async getRecords() {
-    try {
-      await this.api.getAllRecordsByDate(this.date).then((response: Record[]) => {
-        this.records = response;
-      });
-    } catch (error) {
-      throw error;
-    }
+    await this.api.getAllRecordsByDate(this.date).then((response: Record[]) => {
+      this.records = response;
+    });
   }
 
+  /**
+   * @description Carrega os registros de ponto na tela inicial do painel do gestor.
+  */
   public loadRecordsArea() {
+    // Compara os registros de ponto com os usuários cadastrados no sistema.
     this.users.forEach((user: User) => {
       const userRecords = [] as Record[];
       this.records.forEach((record: Record) => {
         if (record.user_id === user.user_id) {
-          userRecords.unshift(record);
+          userRecords.unshift(record); // Insere o registro no início do array
         }
       });
       if (userRecords.length > 0) {

@@ -5,11 +5,20 @@ import { Enterprise } from '../interafaces/enterprise.interface';
 import { User } from '../interafaces/user.interface';
 import { DatabaseService } from './database.service';
 
+
+/**
+ * @description Serviço responsável por realizar as requisições à API.
+*/
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServices {
 
+  /**
+   * @description URL base da API.
+   * @param isDevMode Verifica se a aplicação está em modo de desenvolvimento.
+   * @returns Retorna a URL base da API.
+  */
   baseUrl = isDevMode() ? 'http://localhost:3000' : 'https://app-ponto-82a9efa89434.herokuapp.com';
 
   user = {} as User;
@@ -67,6 +76,9 @@ export class ApiServices {
     }
   }
 
+  /**
+   * @returns Retorna o usuário logado.
+   */
   async getSelfUser() {
     try {
       const headers = await this.headers();
@@ -78,6 +90,11 @@ export class ApiServices {
     } catch (error) {}
   }
 
+  /**
+   * @description Busca todos os usuários cadastrados no sistema.
+   * @returns Retorna um array de objetos do tipo User.
+   * @throws Retorna um erro caso não seja possível buscar os usuários.
+   */
   async getAllUsers(): Promise<any> {
     try {
       const headers = await this.headers();

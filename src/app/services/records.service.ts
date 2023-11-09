@@ -3,6 +3,9 @@ import { User } from '../interafaces/user.interface';
 import { Record } from '../interafaces/record.interface';
 import { TimeObject } from '../interafaces/hours-bank.interface';
 
+/**
+ * @description Serviço responsável por processar os registros de ponto dos usuários.
+*/
 @Injectable({
   providedIn: 'root'
 })
@@ -10,29 +13,29 @@ export class RecordsService {
 
   constructor() { }
 
-   /*
+  /**
   * Calcula a diferença entre dois valores de tempo e retorna uma string formatada com os valores positivos.
   */
    private calculateTimeDifference(greaterTime: number, lowerTime: number): string {
-    let hour = Math.floor((greaterTime - lowerTime) / 3600000);
-    let minute = Math.floor(((greaterTime - lowerTime) % 3600000) / 60000);
+    let hours = Math.floor((greaterTime - lowerTime) / 3600000);
+    let minutes = Math.floor(((greaterTime - lowerTime) % 3600000) / 60000);
     let seconds = Math.floor((((greaterTime - lowerTime) % 3600000) % 60000) / 1000);
 
-    return this.formatTime(hour, minute, seconds);
+    return this.formatTime(hours, minutes, seconds);
   }
 
-  /*
+  /**
   * Calcula a diferença entre dois valores de tempo e retorna uma string formatada com os valores positivos ou negativos.
   */
   private calculateInversedTimeDifference(greaterTime: number, lowerTime: number,  isNegative?: boolean): string {
-    let hour = Math.floor((lowerTime - greaterTime) / 3600000) * -1 - 1;
-    let minute = Math.floor(((lowerTime - greaterTime) % 3600000) / 60000) * -1 - 1;
+    let hours = Math.floor((lowerTime - greaterTime) / 3600000) * -1 - 1;
+    let minutes = Math.floor(((lowerTime - greaterTime) % 3600000) / 60000) * -1 - 1;
     let seconds = Math.floor((((lowerTime - greaterTime) % 3600000) % 60000) / 1000) * -1;
 
-    return this.formatTime(hour, minute, seconds, isNegative);
+    return this.formatTime(hours, minutes, seconds, isNegative);
   }
 
-  /*
+  /**
   * Formata os valores de tempo para o formato HH:MM:SS.
   */
   private formatTime(hours: number, minutes: number, seconds: number, isNegative: boolean = true): string {
@@ -48,7 +51,7 @@ export class RecordsService {
       }`;
   }
 
-  /*
+  /**
   * Formata um objeto de tempo para um array de strings.
   */
   private strArray(timeObject: TimeObject): string[] {
@@ -59,7 +62,7 @@ export class RecordsService {
     return timeArray;
   }
 
-  /*
+  /**
   * Processa um único registro de ponto, no caso de o usuário ter apenas registrado a entrada.
   */
   public processSingleRecord(user: User, record: Record[]) {
@@ -153,7 +156,7 @@ export class RecordsService {
     };
   }
 
-  /*
+  /**
   * Processa múltiplos registros de ponto, no caso de o usuário ter registrado a entrada e a saída.
   */
   public processMultipleRecords(user: User, records: Record[]) {
