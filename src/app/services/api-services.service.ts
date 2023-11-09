@@ -61,6 +61,11 @@ export class ApiServices {
     }
   }
 
+  /**
+   * @description Verifica se token de autenticação é válido.
+   * @returns Retorna um objeto do tipo User.
+   * @throws Retorna um erro caso não seja possível buscar as informações do usuário.
+  */
   async validateToken(): Promise<object> {
     try {
       const response: any = await lastValueFrom(
@@ -75,6 +80,11 @@ export class ApiServices {
     }
   }
 
+  /**
+   * @description Busca a empresa do usuário logado.
+   * @returns Retorna um objeto do tipo Enterprise.
+   * @throws Retorna um erro caso não seja possível buscar a empresa.
+  */
   async getEnterprise(companyId: string): Promise<Enterprise> {
     try {
       const headers = await this.headers();
