@@ -22,7 +22,6 @@ export class SolicitationCardComponent implements OnInit, OnDestroy {
       await this.getSolicitations();
       this.checkForSolicitations();
     }));
-    console.log(this.solicitations);
   }
 
   ngOnDestroy(): void {
