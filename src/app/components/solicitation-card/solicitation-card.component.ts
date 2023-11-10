@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServices } from 'src/app/services/api-services.service';
 
 @Component({
   selector: 'app-solicitation-card',
@@ -9,32 +10,9 @@ export class SolicitationCardComponent implements OnInit {
 
   counter = 0;
 
-  solicitations = [
-    {
-      "id": "1",
-      "applicant": "Cristiano",
-      "date": "03/10/2023",
-      "request": "adjustment",
-      "status": "pending",
-      "data": {
-        "id": "1",
-        "Chegada": "08:00",
-      }
-    },
-    {
-      "id": "2",
-      "applicant": "Cristiano",
-      "date": "04/10/2023",
-      "request": "adjustment",
-      "status": "pending",
-      "data": {
-        "id": "4",
-        "Saída": "18:00",
-      }
-    }
-  ]
+  solicitations = []
 
-  constructor() { }
+  constructor(private readonly api: ApiServices) { }
 
   ngOnInit(): void {
     this.checkForSolicitations();
