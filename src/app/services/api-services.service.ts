@@ -5,6 +5,8 @@ import { Enterprise } from '../interfaces/enterprise.interface';
 import { User } from '../interfaces/user.interface';
 import { DatabaseService } from './database.service';
 import { Record } from '../interfaces/record.interface';
+import { Pending } from '../interfaces/pendings.interface';
+import { Solicitation } from '../interfaces/solicitations.interface';
 
 
 /**
@@ -194,7 +196,7 @@ export class ApiServices {
   /**
    * Busca todas as pendências relacionadas ao usuário logado.
   */
-  async getSelfPendings(): Promise<any> {
+  async getSelfPendings(): Promise<Pending[]> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
@@ -210,7 +212,7 @@ export class ApiServices {
   /**
    * Busca todas as solicitações relacionadas ao usuário logado.
   */
-  async getSelfSolicitations(): Promise<any> {
+  async getSelfSolicitations(): Promise<Solicitation[]> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
