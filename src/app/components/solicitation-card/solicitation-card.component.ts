@@ -17,11 +17,12 @@ export class SolicitationCardComponent implements OnInit, OnDestroy {
 
   constructor(private readonly api: ApiServices) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.subscription.add(interval(300000).subscribe(async () => { // Atualiza o componente a cada 5 minutos.
       await this.getSolicitations();
       this.checkForSolicitations();
     }));
+    console.log(this.solicitations);
   }
 
   ngOnDestroy(): void {
