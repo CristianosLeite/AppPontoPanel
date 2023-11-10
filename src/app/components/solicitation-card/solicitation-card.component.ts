@@ -15,13 +15,16 @@ export class SolicitationCardComponent implements OnInit, OnDestroy {
 
   solicitations = [] as Solicitation[];
 
-  constructor(private readonly api: ApiServices) { }
-
-  async ngOnInit(): Promise<void> {
+  constructor(private readonly api: ApiServices) {
     this.subscription.add(interval(300000).subscribe(async () => { // Atualiza o componente a cada 5 minutos.
       await this.getSolicitations();
       this.checkForSolicitations();
     }));
+   }
+
+  async ngOnInit(): Promise<void> {
+    await this.getSolicitations();
+    this.checkForSolicitations();
   }
 
   ngOnDestroy(): void {
