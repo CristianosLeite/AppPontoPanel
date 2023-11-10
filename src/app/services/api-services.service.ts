@@ -87,11 +87,11 @@ export class ApiServices {
    * @returns Retorna um objeto do tipo Enterprise.
    * @throws Retorna um erro caso não seja possível buscar a empresa.
   */
-  async getEnterprise(companyId: string): Promise<Enterprise> {
+  async getSelfEnterprise(): Promise<Enterprise> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
-        this.http.get(`${this.baseUrl}/api/enterprises/${companyId}`, { headers })
+        this.http.get(`${this.baseUrl}/api/enterprises/user`, { headers, withCredentials: true })
       );
 
       return response;

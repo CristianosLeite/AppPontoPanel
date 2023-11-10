@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/user.interface';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +9,20 @@ import { User } from '../../interfaces/user.interface';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnChanges {
+  private subscription: Subscription = new Subscription();
 
-  role = sessionStorage.getItem('role');
+  role = '';
 
   constructor(private readonly database: DatabaseService) {};
 
   async ngOnInit(): Promise<void> {
+    this.subscription.add(interval(30000).subscribe(async () => {
+      await this.getRole();
+    }));
     await this.getRole();
   }
 
   ngOnChanges(): void {
-    sessionStorage.setItem('role', this.role!.toString());
     window.location.reload();
   }
 

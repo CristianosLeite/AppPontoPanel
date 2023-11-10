@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.scss']
 })
-export class ManagerComponent {
-  content = 'dashboard';
-}
+export class ManagerComponent {}

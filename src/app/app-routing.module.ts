@@ -6,6 +6,7 @@ import { AdminComponent } from './pages/home/admin/admin.component';
 import { UserComponent } from './pages/home/user/user.component';
 import { ManagerComponent } from './pages/home/manager/manager.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,17 @@ const routes: Routes = [
     ],
   },
 
+  {
+    path: 'users',
+    component: UsersPageComponent,
+    data: { title: 'Usuários' },
+    children: [
+      {
+        path: 'users',
+        component: UsersPageComponent,
+      },
+    ],
+  }
 ];
 
 @NgModule({

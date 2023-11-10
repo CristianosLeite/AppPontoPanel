@@ -35,6 +35,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PendingsPageComponent } from './pages/pendings-page/pendings-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { UsersComponentComponent } from './components/users-component/users-component.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
     SolicitationCardComponent,
     FooterComponent,
     PendingsPageComponent,
+    UsersComponentComponent,
   ],
   imports: [
     BrowserModule,

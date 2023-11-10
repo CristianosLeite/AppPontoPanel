@@ -50,3 +50,18 @@
   height: 350px;
   overflow-y: auto; /* Isso adicionará a barra de rolagem vertical se o conteúdo exceder a altura */
 }
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table td, .table th {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.table tr td:first-child, .table tr th:first-child {
+  width: 40px;
+  white-space: nowrap;
+}

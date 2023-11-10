@@ -1,59 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="usersApp">
+<div class="body">
+  <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Login Page</title>
-  <!-- Bootstrap CDN -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Angular CDN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <!-- Custom script -->
-</head>
-
-<body style="padding: 2%;">
-
-  <form action="" class="form-inline">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Filtrar usuários... " aria-label="Recipient's username" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
-      </div>
+  <div class="container-fluid">
+    <div class="header">
+      <app-header></app-header>
     </div>
-    <div class="input-group mb-3">
-      <button class="btn btn-primary" style="margin: 5px;" (click)="openUserModal()">Novo usuário</button>
-    </div>
-  </form>
-
-
-  <table class="table table-striped">
-    <thead class="table-light">
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Data de cadastro</th>
-        <th scope="col">Empresa</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="users && users.length">
-      <tr *ngFor="let user of users">
-        <th scope="row">{{user.userId}}</th>
-        <td scope="row">{{user.name}}</td>
-        <td scope="row">{{user.dateRecord}}</td>
-        <td>{{user.companyId}}</td>
-        <td>
-          <button class="btn btn-primary" style="margin: 5px;">Editar</button>
-          <button class="btn btn-danger" style="margin: 5px;">Excluir</button>
-        </td>
-
-        <tfoot *ngIf="!users.length">
-          <tr>
-            <td colspan="6">Não há usuários cadastrados</td>
-          </tr>
-        </tfoot>
-      </table>
-    </body>
-
-</html>
+    <app-users-component></app-users-component>
+  </div>
+</div>
+<app-footer></app-footer>

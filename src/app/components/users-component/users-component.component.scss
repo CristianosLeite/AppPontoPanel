@@ -1,0 +1,14 @@
+.container {
+  padding: 20px;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table td, .table th {
+  padding: 10px;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
