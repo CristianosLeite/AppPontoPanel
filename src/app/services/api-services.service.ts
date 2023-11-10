@@ -1,10 +1,10 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Enterprise } from '../interafaces/enterprise.interface';
-import { User } from '../interafaces/user.interface';
+import { Enterprise } from '../interfaces/enterprise.interface';
+import { User } from '../interfaces/user.interface';
 import { DatabaseService } from './database.service';
-import { Record } from '../interafaces/record.interface';
+import { Record } from '../interfaces/record.interface';
 
 
 /**

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Solicitation } from 'src/app/interfaces/solicitations.interface';
 import { ApiServices } from 'src/app/services/api-services.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class SolicitationCardComponent implements OnInit {
 
   counter = 0;
 
-  solicitations = []
+  solicitations = [] as Solicitation[];
 
   constructor(private readonly api: ApiServices) { }
 

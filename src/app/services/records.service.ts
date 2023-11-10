@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interafaces/user.interface';
-import { Record } from '../interafaces/record.interface';
-import { TimeObject } from '../interafaces/hours-bank.interface';
+import { User } from '../interfaces/user.interface';
+import { Record } from '../interfaces/record.interface';
+import { TimeObject } from '../interfaces/hours-bank.interface';
 
 /**
  * @description Serviço responsável por processar os registros de ponto dos usuários.

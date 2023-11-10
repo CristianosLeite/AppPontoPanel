@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
-import { User } from '../../interafaces/user.interface';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-home',

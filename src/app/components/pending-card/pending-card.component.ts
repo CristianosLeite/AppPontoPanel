@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Pendings } from '../../interafaces/pendings.interface';
+import { Pending } from '../../interfaces/pendings.interface';
 import { ApiServices } from '../../services/api-services.service';
 import { interval, Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ export class PendingCardComponent implements OnInit, OnDestroy {
 
   counter = 0;
 
-  pendings = [] as Pendings[];
+  pendings = [] as Pending[];
 
   constructor(private readonly apiServices: ApiServices) {
     this.subscription.add(interval(300000).subscribe(async () => { // Atualiza o componente a cada 5 minutos.
@@ -41,7 +41,7 @@ export class PendingCardComponent implements OnInit, OnDestroy {
   }
 
   async getPending() {
-    await this.apiServices.getSelfPendings().then((response: Pendings[]) => {
+    await this.apiServices.getSelfPendings().then((response: Pending[]) => {
       this.pendings = response;
     });
   }

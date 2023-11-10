@@ -9,7 +9,7 @@
  * @param description Descrição da pendência.
  * @param created_at Data de criação da pendência.
  */
-export interface Pendings {
+export interface Pending {
   pending_id: string;
   company_id: string;
   user_id: string;

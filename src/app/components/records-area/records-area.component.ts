@@ -1,8 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { ApiServices } from '../../services/api-services.service';
-import { Record } from '../../interafaces/record.interface';
-import { User } from '../../interafaces/user.interface';
+import { Record } from '../../interfaces/record.interface';
+import { User } from '../../interfaces/user.interface';
 import { interval, Subscription } from 'rxjs';
 import { RecordsService } from 'src/app/services/records.service';
 
