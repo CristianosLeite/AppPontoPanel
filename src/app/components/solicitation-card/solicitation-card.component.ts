@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Solicitation } from 'src/app/interfaces/solicitations.interface';
 import { ApiServices } from 'src/app/services/api-services.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-solicitation-card',
   templateUrl: './solicitation-card.component.html',
   styleUrls: ['./solicitation-card.component.scss']
 })
-export class SolicitationCardComponent implements OnInit {
+export class SolicitationCardComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
 
   counter = 0;
 
@@ -16,7 +18,14 @@ export class SolicitationCardComponent implements OnInit {
   constructor(private readonly api: ApiServices) { }
 
   ngOnInit(): void {
-    this.checkForSolicitations();
+    this.subscription.add(interval(300000).subscribe(async () => { // Atualiza o componente a cada 5 minutos.
+      await this.getSolicitations();
+      this.checkForSolicitations();
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   checkForSolicitations() {
@@ -25,6 +34,12 @@ export class SolicitationCardComponent implements OnInit {
       if (solicitation.status === 'pending') {
         this.counter++;
       }
+    });
+  }
+
+  async getSolicitations() {
+    await this.api.getSelfSolicitations().then((response: Solicitation[]) => {
+      this.solicitations = response;
     });
   }
 }
