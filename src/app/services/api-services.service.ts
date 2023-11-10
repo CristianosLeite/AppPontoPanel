@@ -191,11 +191,30 @@ export class ApiServices {
     }
   }
 
+  /**
+   * Busca todas as pendências relacionadas ao usuário logado.
+  */
   async getSelfPendings(): Promise<any> {
     try {
       const headers = await this.headers();
       const response: any = await lastValueFrom(
         this.http.get(`${this.baseUrl}/api/pendings/user`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Busca todas as solicitações relacionadas ao usuário logado.
+  */
+  async getSelfSolicitations(): Promise<any> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/solicitations/user`, { headers, withCredentials: true })
       );
 
       return response;
