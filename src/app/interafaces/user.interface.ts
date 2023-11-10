@@ -43,7 +43,13 @@ export interface User {
   */
   status?: boolean | null;
 
+  /**
+   * @description Hora de chegada do usuário
+  */
   arrivedAt?: string;
+  /**
+   * @description Hora de saída do usuário
+  */
   leftAt?: string;
   /**
    * @returns Retorna a quantidade de horas extras que o usuário trabalhou no dia

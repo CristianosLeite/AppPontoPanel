@@ -20,7 +20,7 @@ export interface HoursBank {
   worked_hours: TimeObject;
   intervals: TimeObject;
   expected_hours: TimeObject;
-  banked_hours: string;
+  banked_hours: TimeObject;
   created_at: string;
 }
 
