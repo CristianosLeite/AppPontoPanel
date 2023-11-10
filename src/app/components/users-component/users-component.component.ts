@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { User } from 'src/app/interfaces/user.interface';
 import { ApiServices } from 'src/app/services/api-services.service';
@@ -12,9 +13,27 @@ import { AddPhoneComponent } from '../add-user-information/add-phone/add-phone.c
 @Component({
   selector: 'app-users-component',
   templateUrl: './users-component.component.html',
-  styleUrls: ['./users-component.component.scss']
+  styleUrls: ['./users-component.component.scss'],
+  animations: [
+    trigger('loadingTable', [
+      state('loading', style({
+        opacity: 0
+      })),
+      transition('loading => *', [
+        animate('500ms ease-in-out')
+      ]),
+    ]),
+    trigger('loadingCard', [
+      state('loading', style({
+        opacity: 0.5
+      })),
+      transition('* => loading', [
+        animate('300ms ease-in-out')
+      ]),
+    ]),
+  ],
 })
-export class UsersComponentComponent {
+export class UsersComponentComponent implements OnInit {
 
   constructor(private readonly modalService: BsModalService, private readonly api: ApiServices) { }
 
@@ -23,10 +42,14 @@ export class UsersComponentComponent {
   users = [] as User[];
   enterprise = {} as Enterprise;
 
+  loaded: boolean = false;
+
   async ngOnInit() {
     Promise.all([
       this.getUsers(),
-      this.getEnterprise(),
+      this.getEnterprise().then(() => {
+        this.loaded = true;
+        }),
     ]);
   }
 

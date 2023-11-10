@@ -1,3 +1,14 @@
+.card {
+  background-color: #efefef;
+  min-height: 400px;
+  align-items: center;
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
 .container {
   padding: 20px;
 }
@@ -11,4 +22,9 @@
   padding: 10px;
   vertical-align: middle;
   word-wrap: break-word;
+}
+
+.scrollable-component {
+  height: 350px;
+  overflow-y: auto; /* Isso adicionará a barra de rolagem vertical se o conteúdo exceder a altura */
 }
