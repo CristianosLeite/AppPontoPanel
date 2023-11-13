@@ -161,9 +161,13 @@ export class RecordsService {
        timeDifference.push(`${Number(value) < 0 ? Number(value) * -1 : 0}`);
       });
 
-      // Retorna o valor formatado.
-      return this.formatTime(Number(timeDifference[0]) -1, Number(timeDifference[1]) -1, Number(timeDifference[2]) -1);
-    };
+      // Formata o valor de horas extras para o formato HH:MM:SS.
+      let extraHours = this.formatTime(Number(timeDifference[0]) -1, Number(timeDifference[1]) -1, Number(timeDifference[2]) -1);
+
+      totalWorkedHours === extraHours ? extraHours = '00:00:00' : extraHours = extraHours;
+        // Retorna total de horas extras.
+        return extraHours;
+    }
   }
 
   /**
