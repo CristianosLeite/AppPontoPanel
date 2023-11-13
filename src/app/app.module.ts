@@ -37,6 +37,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UsersComponentComponent } from './components/users-component/users-component.component';
 import { FilterTagsComponent } from './components/filter-tags/filter-tags.component';
+import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-bar.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { FilterTagsComponent } from './components/filter-tags/filter-tags.compon
     PendingsPageComponent,
     UsersComponentComponent,
     FilterTagsComponent,
+    UsersToolBarComponent,
   ],
   imports: [
     BrowserModule,

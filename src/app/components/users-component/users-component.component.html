@@ -2,9 +2,9 @@
 
   <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
 
-  <form action="" class="form-inline">
-    <button class="btn btn-primary" style="margin: 5px;" (click)="openUserModal()">Novo usuário</button>
-  </form>
+
+  <button class="btn btn-primary new-user-btn" (click)="openUserModal()">Novo usuário</button>
+
 
   <div class="card scrollable-component" [@loadingCard]="loaded ? 'loaded' : 'loading'">
     <table class="table table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
