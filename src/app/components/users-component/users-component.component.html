@@ -1,18 +1,10 @@
 <div class="container">
 
-  <form action="" class="form-inline">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Filtrar usuários... " aria-label="Recipient's username"
-        aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
-      </div>
-    </div>
-    <div class="input-group mb-3">
-      <button class="btn btn-primary" style="margin: 5px;" (click)="openUserModal()">Novo usuário</button>
-    </div>
-  </form>
+  <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
 
+  <form action="" class="form-inline">
+    <button class="btn btn-primary" style="margin: 5px;" (click)="openUserModal()">Novo usuário</button>
+  </form>
 
   <div class="card scrollable-component" [@loadingCard]="loaded ? 'loaded' : 'loading'">
     <table class="table table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
@@ -25,7 +17,7 @@
         </tr>
       </thead>
       <tbody *ngIf="users && users.length">
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of filterUser(filterTags)">
           <td scope="row">{{user.first_name + ' ' + user.last_name}}</td>
           <td scope="row">{{user.created_at}}</td>
           <td>{{enterprise.alias}}</td>
@@ -33,13 +25,12 @@
             <button class="btn btn-primary" style="margin: 5px;">Editar</button>
             <button class="btn btn-danger" style="margin: 5px;">Excluir</button>
           </td>
-
       <tfoot *ngIf="!users.length">
         <tr>
           <td colspan="6">Não há usuários cadastrados</td>
         </tr>
       </tfoot>
     </table>
-
   </div>
+
 </div>

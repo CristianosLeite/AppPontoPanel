@@ -1,0 +1,11 @@
+<div class="container card">
+
+  <div class="tags-input">
+    <span class="tag" *ngFor="let tag of tags; let i = index">
+      {{ tag }}
+      <button type="button" class="close-tag" (click)="removeTag(i)">x</button>
+    </span>
+    <input type="text" [(ngModel)]="newTag" (keyup.enter)="addTag()" placeholder="Filtrar usuários">
+  </div>
+
+</div>
