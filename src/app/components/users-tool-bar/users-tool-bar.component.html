@@ -1,1 +1,12 @@
-<p>users-tool-bar works!</p>
+<div class="container toolbar">
+
+  <div class="icons">
+    <a class="slot" (click)="openUserModal()">
+      <i class="bi bi-person-plus-fill"></i>
+      <ng-template #cardChecklistText>
+        <p>Novo usuário</p>
+      </ng-template>
+      <ng-template [ngTemplateOutlet]="cardChecklistText"></ng-template>
+    </a>
+  </div>
+</div>

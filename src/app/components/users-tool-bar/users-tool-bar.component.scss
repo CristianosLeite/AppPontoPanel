@@ -1,0 +1,56 @@
+.toolbar {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.slot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 50px;
+  min-width: 150px;
+  max-width: 180px;
+}
+
+.slot:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.icons {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 70%;
+  padding: 0;
+}
+
+.icon {
+  font-size: 20px;
+  padding: 10px;
+  display: flex;
+  margin-left: 5px
+}
+
+i:hover {
+  color: #04A24D;
+  cursor: pointer;
+}
+
+a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #04A24D;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+}

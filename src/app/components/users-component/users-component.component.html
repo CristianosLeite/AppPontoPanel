@@ -3,7 +3,7 @@
   <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
 
 
-  <button class="btn btn-primary new-user-btn" (click)="openUserModal()">Novo usuário</button>
+  <app-users-tool-bar></app-users-tool-bar>
 
 
   <div class="card scrollable-component" [@loadingCard]="loaded ? 'loaded' : 'loading'">
