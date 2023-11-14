@@ -16,6 +16,9 @@ export class UsersToolBarComponent {
 
   bsModalRef: BsModalRef | undefined;
 
+  isSingleSelected: boolean = false;
+  isMultipleSelected: boolean = false;
+
   openUserModal() {
     this.bsModalRef = this.modalService.show(CreateUserComponent, { class: 'modal-lg' });
   }

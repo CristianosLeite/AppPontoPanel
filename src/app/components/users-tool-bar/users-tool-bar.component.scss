@@ -26,11 +26,6 @@
   padding: 0;
 }
 
-i:hover {
-  color: #04A24D;
-  cursor: pointer;
-}
-
 i {
   margin-left: 20px;
 }
@@ -46,6 +41,32 @@ a:hover {
   cursor: pointer;
 }
 
+.slot.disabled, i.slot.disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
 p {
   margin: 0 20px 0 20px;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    margin-top: 0;
+  }
+  .slot {
+    min-height: 40px;
+  }
+  .icons {
+    font-size: 16px;
+  }
+  i {
+    margin-left: 10px;
+  }
+  a {
+    font-size: 16px;
+  }
+  p {
+    margin: 0 10px 0 10px;
+  }
 }

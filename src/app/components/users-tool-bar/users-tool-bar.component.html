@@ -8,28 +8,28 @@
   </div>
 
   <div class="icons">
-    <a class="slot">
+    <a class="slot" [class.disabled]="!isMultipleSelected && !isSingleSelected">
       <i class="bi bi-person-fill-exclamation"></i>
       <p>Gerar pendência</p>
     </a>
   </div>
 
   <div class="icons">
-    <a class="slot">
+    <a class="slot" [class.disabled]="!isMultipleSelected && !isSingleSelected">
       <i class="bi bi-envelope-exclamation-fill"></i>
       <p>Criar uma solicitação</p>
     </a>
   </div>
 
   <div class="icons">
-    <a class="slot">
+    <a class="slot" [class.disabled]="isMultipleSelected || !isSingleSelected">
       <i class="bi bi-pencil-fill"></i>
       <p>Editar usuário</p>
     </a>
   </div>
 
   <div class="icons">
-    <a class="slot">
+    <a class="slot" [class.disabled]="isMultipleSelected || !isSingleSelected">
       <i class="bi bi-trash-fill"></i>
       <p>Excluir usuário</p>
     </a>
