@@ -25,3 +25,7 @@
   min-height: 350px;
   overflow-y: auto; /* Isso adicionará a barra de rolagem vertical se o conteúdo exceder a altura */
 }
+
+.table td:first-child, .table th:first-child {
+  width: 5%; /* Largura da primeira coluna */
+}

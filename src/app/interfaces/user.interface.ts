@@ -55,6 +55,10 @@ export interface User {
    * @returns Retorna a quantidade de horas extras que o usuário trabalhou no dia
    * @description Se o usuário não tiver registrado a saída deverá retornar: '00:00:00'.
   */
+ /**
+  * @description Indica se o usuário está selecionado na tabela.
+  */
+ selected?: boolean;
   extraHours: () => string;
   /**
    * @returns Retorna a quantidade de horas que o usuário deveria ter trabalhado no dia

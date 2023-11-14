@@ -41,4 +41,10 @@ export class UsersComponentComponent implements OnInit {
       this.loaded = true;
     });
   }
+
+  selectAll(event: Event) {
+    this.users.forEach(user => {
+      user.selected = (event.target as HTMLInputElement).checked;
+    });
+  }
 }

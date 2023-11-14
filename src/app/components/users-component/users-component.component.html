@@ -2,7 +2,11 @@
   <table class="table table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
     <thead class="table-light">
       <tr>
+        <th scope="col">
+          <input type="checkbox" (change)="selectAll($event)" />
+        </th>
         <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
         <th scope="col">Data de cadastro</th>
         <th scope="col">Empresa</th>
         <th scope="col">Ações</th>
@@ -10,7 +14,11 @@
     </thead>
     <tbody *ngIf="users && users.length">
       <tr *ngFor="let user of users">
+        <th scope="row">
+          <input type="checkbox" #checkbox [(ngModel)]="user.selected" />
+        </th>
         <td scope="row">{{user.first_name + ' ' + user.last_name}}</td>
+        <td>{{user.email}}</td>
         <td scope="row">{{user.created_at}}</td>
         <td>{{user.enterprise.alias}}</td>
         <td>
