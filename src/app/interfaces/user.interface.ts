@@ -14,6 +14,7 @@ import { Phone } from './phone.interface';
  * @param created_at Data de criação do usuário
  * @param adresses Endereços do usuário
  * @param phones Telefones do usuário
+ * @param enterprise Empresa do usuário
  * @param status Status do usuário
  * @param arrivedAt Hora de chegada do usuário
  * @param leftAt Hora de saída do usuário
