@@ -10,8 +10,6 @@
   align-items: center;
   justify-content: space-around;
   min-height: 50px;
-  min-width: 150px;
-  max-width: 180px;
 }
 
 .slot:hover {
@@ -23,21 +21,18 @@
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   height: 70%;
   padding: 0;
-}
-
-.icon {
-  font-size: 20px;
-  padding: 10px;
-  display: flex;
-  margin-left: 5px
 }
 
 i:hover {
   color: #04A24D;
   cursor: pointer;
+}
+
+i {
+  margin-left: 20px;
 }
 
 a {
@@ -52,5 +47,5 @@ a:hover {
 }
 
 p {
-  margin: 0;
+  margin: 0 20px 0 20px;
 }
