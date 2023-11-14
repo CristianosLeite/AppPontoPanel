@@ -1,11 +1,15 @@
 <div class="body">
+  <!-- Sidebar -->
   <div class="sidebar">
     <app-sidebar></app-sidebar>
   </div>
+  <!-- Main -->
   <div class="container-fluid">
+    <!-- Header -->
     <div class="header">
       <app-header></app-header>
     </div>
+    <!-- Content -->
     <div class="container">
       <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
       <app-users-tool-bar></app-users-tool-bar>
@@ -13,4 +17,5 @@
     </div>
   </div>
 </div>
+<!-- Footer -->
 <app-footer></app-footer>
