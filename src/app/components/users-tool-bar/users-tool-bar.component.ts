@@ -35,4 +35,19 @@ export class UsersToolBarComponent {
     this.bsModalRef = this.modalService.show(AddPhoneComponent);
   }
 
+  createPending() {
+    alert('Função não implementada!');
+  }
+
+  createSolicitation() {
+    alert('Função não implementada!');
+  }
+
+  editUser() {
+    alert('Função não implementada!');
+  }
+
+  deleteUser() {
+    alert('Função não implementada!');
+  }
 }
