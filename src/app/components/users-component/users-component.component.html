@@ -1,11 +1,3 @@
-<div class="container">
-
-  <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
-
-
-  <app-users-tool-bar></app-users-tool-bar>
-
-
   <div class="card scrollable-component" [@loadingCard]="loaded ? 'loaded' : 'loading'">
     <table class="table table-striped" [@loadingTable]="loaded ? 'loaded' : 'loading'">
       <thead class="table-light">
@@ -17,10 +9,10 @@
         </tr>
       </thead>
       <tbody *ngIf="users && users.length">
-        <tr *ngFor="let user of filterUser(filterTags)">
+        <tr *ngFor="let user of users">
           <td scope="row">{{user.first_name + ' ' + user.last_name}}</td>
           <td scope="row">{{user.created_at}}</td>
-          <td>{{enterprise.alias}}</td>
+          <td>{{user.enterprise.alias}}</td>
           <td>
             <button class="btn btn-primary" style="margin: 5px;">Editar</button>
             <button class="btn btn-danger" style="margin: 5px;">Excluir</button>
@@ -32,5 +24,3 @@
       </tfoot>
     </table>
   </div>
-
-</div>

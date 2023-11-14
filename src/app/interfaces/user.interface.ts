@@ -1,6 +1,6 @@
 import { Adress } from './adress.interface';
+import { Enterprise } from './enterprise.interface';
 import { Phone } from './phone.interface';
-import { Record } from './record.interface';
 
 /**
  * @description Interface de usuário
@@ -14,7 +14,6 @@ import { Record } from './record.interface';
  * @param created_at Data de criação do usuário
  * @param adresses Endereços do usuário
  * @param phones Telefones do usuário
- * @param records Registros de ponto do usuário
  * @param status Status do usuário
  * @param arrivedAt Hora de chegada do usuário
  * @param leftAt Hora de saída do usuário
@@ -33,7 +32,7 @@ export interface User {
   created_at?: string;
   adresses?: Adress[];
   phones?: Phone[];
-  records: Record;
+  enterprise: Enterprise;
   /**
    * @description Indica se o usuário registrou ponto no dia.
    * @param true Usuário registrou ponto no dia.
