@@ -15,7 +15,7 @@
     <tbody *ngIf="users && users.length">
       <tr *ngFor="let user of users">
         <th scope="row">
-          <input type="checkbox" #checkbox [(ngModel)]="user.selected" />
+          <input type="checkbox" #checkbox [(ngModel)]="user.selected" (change)="selectUser($event, user)" />
         </th>
         <td scope="row">{{user.first_name + ' ' + user.last_name}}</td>
         <td>{{user.email}}</td>

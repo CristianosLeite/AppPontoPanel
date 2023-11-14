@@ -11,9 +11,9 @@
     </div>
     <!-- Content -->
     <div class="container">
-      <app-filter-tags (tagsChanged)="filterUser($event)"></app-filter-tags>
+      <app-filter-tags (tagsChanged)="filterUsers($event)"></app-filter-tags>
       <app-users-tool-bar></app-users-tool-bar>
-      <app-users-component></app-users-component>
+      <app-users-component (userSelected)="selectUser($event)"></app-users-component>
     </div>
   </div>
 </div>

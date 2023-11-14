@@ -16,11 +16,21 @@ export class UsersService {
    * @returns {User[]} Lista de usuários.
   */
   @Output() usersLoaded = new EventEmitter<User[]>();
+  /**
+   * @description Evento que emite os usuários selecionados.
+   * @returns {User[]} Lista de usuários.
+  */
+  @Output() usersSelected = new EventEmitter<User[]>();
 
   /**
    * @description Lista de usuários.
   */
   users = [] as User[];
+
+  /**
+   * @description Lista de usuários selecionados.
+  */
+  selectedUsers = [] as User[];
 
   /**
    * @description Busca todos os usuários e emite um evento com os usuários carregados.
@@ -38,7 +48,7 @@ export class UsersService {
    * @description Filtra os usuários de acordo com os parâmetros passados.
    * @param {string[]} tags Lista de tags para filtrar os usuários.
   */
-  filterUser(tags: string[]) {
+  filterUsers(tags: string[]) {
     if (tags.length === 0) {
       this.usersLoaded.emit(this.users);
       return this.users;
@@ -57,5 +67,14 @@ export class UsersService {
     // Emite um evento com os usuários filtrados.
     this.usersLoaded.emit(filteredValues);
     return filteredValues;
+  }
+
+  /**
+   * @description Usuários selecionados na tabela.
+  */
+  selectUsers(users: User[]) {
+    this.selectedUsers = users;
+    this.usersSelected.emit(this.selectedUsers);
+    return this.selectedUsers;
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -10,7 +11,11 @@ export class UsersPageComponent {
 
   constructor(private readonly usersService: UsersService) { }
 
-  filterUser(tags: string[]) {
-    this.usersService.filterUser(tags);
+  filterUsers(tags: string[]) {
+    this.usersService.filterUsers(tags);
+  }
+
+  selectUser(users: User[]) {
+    this.usersService.selectUsers(users);
   }
 }

@@ -1,5 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -27,6 +27,7 @@ import { UsersService } from 'src/app/services/users.service';
   ],
 })
 export class UsersComponentComponent implements OnInit {
+  @Output() userSelected = new EventEmitter<User[]>();
 
   constructor(private readonly usersService: UsersService) { }
 
@@ -46,5 +47,13 @@ export class UsersComponentComponent implements OnInit {
     this.users.forEach(user => {
       user.selected = (event.target as HTMLInputElement).checked;
     });
+    const selectedUsers = this.users.filter(user => user.selected);
+    this.userSelected.emit(selectedUsers);
+  }
+
+  selectUser(event: Event, user: User) {
+    user.selected = (event.target as HTMLInputElement).checked;
+    const selectedUsers = this.users.filter(user => user.selected);
+    this.userSelected.emit(selectedUsers);
   }
 }
