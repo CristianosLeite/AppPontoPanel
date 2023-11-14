@@ -11,7 +11,6 @@ export class UsersService {
   @Output() usersLoaded = new EventEmitter<User[]>();
 
   users = [] as User[];
-  filterTags = [] as string[];
 
   async getUsers() {
     await this.api.getAllUsers().then((users: User[]) => {
@@ -26,8 +25,7 @@ export class UsersService {
       this.usersLoaded.emit(this.users);
       return this.users;
     }
-    this.filterTags = tags;
-    const userNameList = this.filterTags.map(tag => tag.toLowerCase());
+    const userNameList = tags.map(tag => tag.toLowerCase());
     const filteredValues = this.users.filter((user: User) => {
       return userNameList.some(name =>
         name === user.first_name.toLowerCase() ||
