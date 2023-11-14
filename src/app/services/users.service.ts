@@ -33,9 +33,9 @@ export class UsersService {
         name === user.first_name.toLowerCase() ||
         name === user.last_name.toLowerCase() ||
         name === user.first_name.toLowerCase() + ' ' + user.last_name.toLowerCase()
-        );
-      });
-      this.usersLoaded.emit(filteredValues);
-      return filteredValues;
+      );
+    });
+    this.usersLoaded.emit(filteredValues);
+    return filteredValues;
   }
 }
