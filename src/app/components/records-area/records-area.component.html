@@ -8,7 +8,7 @@
         <th scope="col">Horas extras</th>
         <th scope="col">Horas faltantes</th>
         <th scope="col">Horas trabalhadas</th>
-        <th scope="col" id="isExpanded">Ação</th>
+        <th scope="col" id="isExpanded">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -35,17 +35,22 @@
         <td *ngIf="user.status === true || user.status === null">{{user?.totalHours()}}</td>
         <td *ngIf="user.status === false">00:00:00</td>
         <!-- Ação -->
-        <td *ngIf="user.status === true" id="isExpanded">
-          <button class="btn btn-primary" (click)="openModal(user)">Registrar saída</button>
-        </td>
-        <td *ngIf="user.status === false && loggedUser.user_id !== user.user_id" id="isExpanded">
-          <button class="btn btn-danger" (click)="openModal(user)">Registrar falta</button>
-        </td>
-        <td *ngIf="user.status === false && loggedUser.user_id === user.user_id" id="isExpanded">
-          <button class="btn btn-success" (click)="openModal(user)">Registrar ponto</button>
-        </td>
-        <td *ngIf="user.status === null" id="isExpanded">
-          <button class="btn btn-success" (click)="openModal(user)">Ver Registros</button>
+        <!--
+          <td *ngIf="user.status === true" id="isExpanded">
+            <button class="btn btn-primary" (click)="openModal(user)">Registrar saída</button>
+          </td>
+          <td *ngIf="user.status === false && loggedUser.user_id !== user.user_id" id="isExpanded">
+            <button class="btn btn-danger" (click)="openModal(user)">Registrar falta</button>
+          </td>
+          <td *ngIf="user.status === false && loggedUser.user_id === user.user_id" id="isExpanded">
+            <button class="btn btn-success" (click)="openModal(user)">Registrar ponto</button>
+          </td>
+          <td *ngIf="user.status === null" id="isExpanded">
+            <button class="btn btn-success" (click)="openModal(user)">Ver Registros</button>
+          </td>
+        -->
+        <td>
+          <app-actions-bar></app-actions-bar>
         </td>
       </tr>
   </table>

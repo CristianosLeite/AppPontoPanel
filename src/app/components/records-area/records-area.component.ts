@@ -112,8 +112,4 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
     });
     this.loaded = true;
   }
-
-  openModal(user: User) {
-    alert('Funcionalidade em desenvolvimento');
-  }
 }
