@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+}
+
+.slot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 30px;
+  width: 30px;
+}
+
+.slot:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.new-record {
+  font-size: 30px;
+  color: darkgreen;
+  cursor: pointer;
+}
+
+.edit-record {
+  color: darkblue;
+}
+
+.missed-record {
+  color: darkred;
+}
+
+.new-record.disabled, .edit-record.disabled, .missed-record.disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  color: #04A24D;
+  cursor: pointer;
+}
+
