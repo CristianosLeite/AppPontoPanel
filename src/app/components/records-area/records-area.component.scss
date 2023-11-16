@@ -65,3 +65,52 @@
   width: 40px;
   white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  .container {
+    display: block;
+    padding: 2px;
+  }
+  .card {
+    max-width: 280px;
+  }
+  .circle-green, .circle-orange .circle-red {
+    width: 15px;
+    height: 15px;
+  }
+  .table tr td:first-child, .table tr th:first-child {
+    width: 25px;
+  }
+  .table td, .table th {
+    padding: 5px;
+  }
+  .table {
+    max-height: 100px;
+    font-size: 6px;
+  }
+  .scrollable-component {
+    max-height: 100px;
+  }
+  .btn {
+    display: flex;
+    font-size: 8px;
+  }
+
+  @media (max-width: 600px) {
+    #isExpanded {
+      display: none;
+    }
+    #isNotExpanded {
+      display: block;
+    }
+  }
+
+  @media (min-width: 601px) {
+    #isExpanded {
+      display: block;
+    }
+    #isNotExpanded {
+      display: none;
+    }
+  }
+}

@@ -96,11 +96,15 @@ p {
     display: block;
     width: 200px;
   }
+  .side-header {
+    padding-right: 70px;
+  }
   .icon {
     font-size: 16px;
     padding: 5px;
     display: flex;
-    margin-left: 5px
+    margin-left: 5px;
+    z-index: 1;
   }
   .slot {
     display: flex;

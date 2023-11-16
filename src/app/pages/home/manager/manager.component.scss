@@ -23,13 +23,6 @@
   padding: 0;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  min-width: 85%;
-}
-
 .row-cols-1 {
   min-height: 30%;
   display: flex;
@@ -41,13 +34,6 @@
   min-height: 50px;
   padding: 20px;
   margin-left: auto;
-}
-
-.row-cols-2 {
-  min-height: 50%;
-  margin: 5px;
-  padding-right: 20px;
-  padding-left: 40px;
 }
 
 @media (max-width: 600px) {
