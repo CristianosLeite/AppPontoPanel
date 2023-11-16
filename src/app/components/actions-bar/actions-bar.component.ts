@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./actions-bar.component.scss']
 })
 export class ActionsBarComponent {
-  status: boolean | null = false;
+  status: boolean | null = true;
   isUser: boolean = false;
 }

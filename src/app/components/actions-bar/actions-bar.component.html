@@ -11,7 +11,7 @@
     <i class="bi bi-card-checklist" style="font-size: 25px;" [popover]="'Ver registros'"
       triggers="mouseenter:mouseleave"></i>
   </a>
-  <a class="slot missed-record" [class.disabled]="status">
-    <i class="bi bi-ban" [class.disabled]="status" [popover]="'Registrar falta'" triggers="mouseenter:mouseleave"></i>
+  <a class="slot missed-record" [class.disabled]="!status">
+    <i class="bi bi-ban" [class.disabled]="!status" [popover]="'Registrar falta'" triggers="mouseenter:mouseleave"></i>
   </a>
 </div>
