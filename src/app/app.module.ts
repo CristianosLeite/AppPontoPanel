@@ -38,6 +38,7 @@ import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UsersComponentComponent } from './components/users-component/users-component.component';
 import { FilterTagsComponent } from './components/filter-tags/filter-tags.component';
 import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-bar.component';
+import { ActionsBarComponent } from './components/actions-bar/actions-bar.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-ba
     UsersComponentComponent,
     FilterTagsComponent,
     UsersToolBarComponent,
+    ActionsBarComponent,
   ],
   imports: [
     BrowserModule,
