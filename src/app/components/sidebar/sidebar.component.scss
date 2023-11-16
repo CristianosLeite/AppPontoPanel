@@ -28,7 +28,7 @@
   display: flex;
   position: absolute;
   bottom: 60;
-  padding-right: 21px;
+  padding-right: 20px;
 }
 
 .sidebar {
@@ -36,12 +36,14 @@
   min-width: 50px;
   min-height: 100vh;
   transition: min-width 0.3s;
+  background-color: #EFEFEF;
 }
 
 .sidebar.expanded {
   display: block;
-  min-width: 210px;
+  min-width: 180px;
   min-height: 100vh;
+  background-color: #EFEFEF;
 }
 
 .icon {
@@ -58,7 +60,6 @@
   min-height: 50px;
   min-width: 50px;
   max-height: 100%;
-  max-width: 180px;
 }
 
 .slot:hover {
@@ -90,14 +91,10 @@ p {
   .sidebar {
     display: block;
     width: 50px;
-    transition: width 0.3s;
   }
   .sidebar.expanded {
     display: block;
-    width: 200px;
-  }
-  .side-header {
-    padding-right: 70px;
+    width: 100px;
   }
   .icon {
     font-size: 16px;
@@ -111,8 +108,6 @@ p {
     flex-direction: row;
     flex-flow: wrap;
     align-content: space-around;
-    max-width: 130px;
-    max-height: 50px;
   }
   .slot:hover {
     background-color: #fff;
