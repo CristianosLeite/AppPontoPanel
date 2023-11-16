@@ -1,9 +1,9 @@
-<div class="header-content">
-  <div class="col-1"></div>
-  <div class="spacer"></div>
-  <div class="col-2 btn-group" dropdown>
-    <span class="caret">{{userName}}</span>
-    <i id="user-btn" class="user-icon btn bi bi-person-circle" dropdownToggle type="button" data-bs-toggle="dropdown"
+<div class="container">
+  <div class="header-content">
+    <div class="col-1"></div>
+    <div class="col-2 btn-group" dropdown>
+      <span class="caret">{{userName}}</span>
+      <i id="user-btn" class="user-icon btn bi bi-person-circle" dropdownToggle type="button" data-bs-toggle="dropdown"
       aria-expanded="false" aria-controls="dropdown-basic">
     </i>
     <ul class="dropdown-menu" *dropdownMenu role="menu" aria-labelledby="user-btn">
@@ -18,4 +18,5 @@
       </li>
     </ul>
   </div>
+</div>
 </div>

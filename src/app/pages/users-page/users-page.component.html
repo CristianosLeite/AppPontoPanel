@@ -1,7 +1,10 @@
 <div class="body">
   <!-- Sidebar -->
-  <div class="sidebar">
-    <app-sidebar></app-sidebar>
+  <div class="sidebar" id="isExpanded">
+    <app-sidebar [isExpanded]="true"></app-sidebar>
+  </div>
+  <div class="sidebar" id="isNotExpanded">
+    <app-sidebar [isExpanded]="false"></app-sidebar>
   </div>
   <!-- Main -->
   <div class="container-fluid">

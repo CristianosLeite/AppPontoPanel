@@ -1,26 +1,32 @@
 <div class="body">
-  <div class="sidebar">
-    <app-sidebar></app-sidebar>
+  <!-- Sidebar -->
+  <div class="sidebar" id="isExpanded">
+    <app-sidebar [isExpanded]="true"></app-sidebar>
   </div>
-
+  <div class="sidebar" id="isNotExpanded">
+    <app-sidebar [isExpanded]="false"></app-sidebar>
+  </div>
+  <!-- Main -->
   <div class="container-fluid">
+    <!-- Header -->
     <div class="header">
       <app-header></app-header>
     </div>
-    <div class="row-cols-1">
-      <div class="item"></div>
-      <div class="item">
-        <app-pending-card></app-pending-card>
+    <!-- Content -->
+    <div class="container">
+      <div class="row-cols-1">
+        <div class="item">
+          <app-pending-card></app-pending-card>
+        </div>
+        <div class="item">
+          <app-vacation-card></app-vacation-card>
+        </div>
+        <div class="item">
+          <app-solicitation-card></app-solicitation-card>
+        </div>
       </div>
-      <div class="item">
-        <app-vacation-card></app-vacation-card>
+      <div class="row-cols-2">
+        <app-records-area></app-records-area>
       </div>
-      <div class="item">
-        <app-solicitation-card></app-solicitation-card>
-      </div>
-
-    </div>
-    <div class="row-cols-2">
-      <app-records-area></app-records-area>
     </div>
   </div>

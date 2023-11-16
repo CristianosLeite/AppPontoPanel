@@ -2,7 +2,6 @@
   background-color: #EFEFEF;
   min-height: 10%;
   max-height: 10%;
-  min-width: 100%;
 }
 
 .body {
@@ -33,15 +32,15 @@
 
 .row-cols-1 {
   min-height: 30%;
-  margin: 5px;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .item {
-  max-width: 25%;
-  min-height: 25%;
+  max-width: 320px;
+  min-height: 50px;
   padding: 20px;
+  margin-left: auto;
 }
 
 .row-cols-2 {
@@ -49,4 +48,28 @@
   margin: 5px;
   padding-right: 20px;
   padding-left: 40px;
+}
+
+@media (max-width: 600px) {
+  #isExpanded {
+    display: none;
+  }
+  #isNotExpanded {
+    display: block;
+  }
+}
+
+@media (min-width: 601px) {
+  #isExpanded {
+    display: block;
+  }
+  #isNotExpanded {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .header {
+    min-width: 50%;
+  }
 }

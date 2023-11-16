@@ -1,17 +1,11 @@
 <!-- Admin -->
-<body *ngIf="role === 'admin' ">
-    <app-admin></app-admin>
-    <app-footer></app-footer>
-</body>
+<app-admin *ngIf="role === 'admin' "></app-admin>
 
 <!-- Manager -->
-<body *ngIf="role === 'manager' ">
-    <app-manager></app-manager>
-    <app-footer></app-footer>
-</body>
+<app-manager *ngIf="role === 'manager' "></app-manager>
 
 <!-- User -->
-<body *ngIf="role === 'user' ">
-    <app-user></app-user>
-    <app-footer></app-footer>
-</body>
+<app-user *ngIf="role === 'user' "></app-user>
+
+<!-- Footer -->
+<app-footer></app-footer>

@@ -55,14 +55,14 @@
         <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
       </ng-container>
     </a>
+    <a class="side-footer slot" routerLink="/settings">
+      <i class="bi bi-gear icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #calendarCheckText>
+          <p>Configurações</p>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
+      </ng-container>
+    </a>
   </div>
-
-  <a class="side-footer slot" routerLink="/settings">
-    <i class="bi bi-gear icon"></i>
-    <ng-container *ngIf="isExpanded">
-      <ng-template #calendarCheckText>
-        <p>Configurações</p>
-      </ng-template>
-      <ng-template [ngTemplateOutlet]="calendarCheckText"></ng-template>
-    </ng-container>
-  </a>
+</div>

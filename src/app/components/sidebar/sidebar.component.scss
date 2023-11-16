@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 70%;
   padding: 0;
+  max-height: 50px;
 }
 
 .side-header {
@@ -15,6 +15,7 @@
   justify-content: space-between;
   height: 10%;
   padding: 5px;
+  padding-right: 20px;
 }
 
 .logo {
@@ -24,20 +25,23 @@
 }
 
 .side-footer {
-  font-size: 18px;
   display: flex;
-  flex-direction: column;
-  height: 20%;
+  position: absolute;
+  bottom: 60;
+  padding-right: 21px;
 }
 
 .sidebar {
   display: block;
-  background-color: #EFEFEF;
-  width: 50px;
-  transition: width 0.3s;}
+  min-width: 50px;
+  min-height: 100vh;
+  transition: min-width 0.3s;
+}
 
 .sidebar.expanded {
-  width: 180px;
+  display: block;
+  min-width: 210px;
+  min-height: 100vh;
 }
 
 .icon {
@@ -53,16 +57,13 @@
   align-items: center;
   min-height: 50px;
   min-width: 50px;
+  max-height: 100%;
   max-width: 180px;
 }
 
 .slot:hover {
   background-color: #fff;
   cursor: pointer;
-}
-
-.sidebar.expanded {
-  font-size: 18px;
 }
 
 i:hover {
@@ -83,4 +84,53 @@ a:hover {
 
 p {
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: block;
+    width: 50px;
+    transition: width 0.3s;
+  }
+  .sidebar.expanded {
+    display: block;
+    width: 200px;
+  }
+  .icon {
+    font-size: 16px;
+    padding: 5px;
+    display: flex;
+    margin-left: 5px
+  }
+  .slot {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-content: space-around;
+    max-width: 130px;
+    max-height: 50px;
+  }
+  .slot:hover {
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .sidebar.expanded {
+    font-size: 16px;
+  }
+  i:hover {
+    color: #04A24D;
+    cursor: pointer;
+  }
+  a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    color: #04A24D;
+    cursor: pointer;
+  }
+  p {
+    margin: 0;
+  }
 }
