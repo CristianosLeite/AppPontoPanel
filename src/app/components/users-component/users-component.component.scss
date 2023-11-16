@@ -6,7 +6,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   margin-left: 5px;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .table, .input-group-text {
@@ -32,4 +32,35 @@
 
 .btn {
   min-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .scrollable-component {
+    height: 500px;
+    min-height: 250px;
+  }
+  .table {
+    font-size: 10px;
+  }
+  .table td:first-child, .table th:first-child {
+    width: 10%; /* Largura da primeira coluna */
+  }
+}
+
+@media (max-width: 600px) {
+  #isExpanded {
+    display: none;
+  }
+  #isNotExpanded {
+    display: block;
+  }
+}
+
+@media (min-width: 601px) {
+  #isExpanded {
+    display: block;
+  }
+  #isNotExpanded {
+    display: none;
+  }
 }
