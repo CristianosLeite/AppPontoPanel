@@ -17,7 +17,17 @@
     </a>
 
     <a class="slot" routerLink="/pendings">
-      <i class="bi bi-person-check icon"></i>
+      <i class="bi bi-person-exclamation icon"></i>
+      <ng-container *ngIf="isExpanded">
+        <ng-template #personCircleText>
+          <p>Pendências</p>
+        </ng-template>
+        <ng-template [ngTemplateOutlet]="personCircleText"></ng-template>
+      </ng-container>
+    </a>
+
+    <a class="slot" routerLink="/pendings">
+      <i class="bi bi-envelope-exclamation icon"></i>
       <ng-container *ngIf="isExpanded">
         <ng-template #personCircleText>
           <p>Solicitações</p>

@@ -1,17 +1,17 @@
 <div class="container icons">
-  <a class="slot" [class.disabled]="!isUser && !status">
-    <i class="bi bi-record2 new-record" [class.disabled]="!isUser && !status" [popover]="'Registrar ponto'"
+  <a class="slot" *ngIf="loggedUser" [class.disabled]="loggedUser.user_id != user!.user_id && !user!.status">
+    <i class="bi bi-record2 new-record" [class.disabled]="loggedUser.user_id != user!.user_id && !user!.status" [popover]="'Registrar ponto'"
       triggers="mouseenter:mouseleave"></i>
   </a>
-  <a class="slot" [class.disabled]="!status">
-    <i class="bi bi-pencil-square edit-record" [class.disabled]="!status" [popover]="'Editar ponto'"
+  <a class="slot" *ngIf="loggedUser" [class.disabled]="!user!.status">
+    <i class="bi bi-pencil-square edit-record" [class.disabled]="!user!.status" [popover]="'Editar ponto'"
       triggers="mouseenter:mouseleave"></i>
   </a>
   <a class="slot">
     <i class="bi bi-card-checklist" style="font-size: 25px;" [popover]="'Ver registros'"
       triggers="mouseenter:mouseleave"></i>
   </a>
-  <a class="slot missed-record" [class.disabled]="!status">
-    <i class="bi bi-ban" [class.disabled]="!status" [popover]="'Registrar falta'" triggers="mouseenter:mouseleave"></i>
+  <a class="slot missed-record" *ngIf="loggedUser" [class.disabled]="user!.status">
+    <i class="bi bi-ban" [class.disabled]="user!.status" [popover]="'Registrar falta'" triggers="mouseenter:mouseleave"></i>
   </a>
 </div>

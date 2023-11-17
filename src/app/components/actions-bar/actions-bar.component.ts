@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { User } from 'src/app/interfaces/user.interface';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-actions-bar',
@@ -6,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./actions-bar.component.scss']
 })
 export class ActionsBarComponent {
-  status: boolean | null = true;
-  isUser: boolean = false;
+  @Input() user: User | null = null;
+  @Input() loggedUser: User | null = null;
 }
