@@ -1,7 +1,10 @@
 import { User } from '../../interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgForm } from '@angular/forms';
+import { AddEmailComponent } from '../add-user-information/add-email/add-email.component';
+import { AddAdressComponent } from '../add-user-information/add-adress/add-adress.component';
+import { AddPhoneComponent } from '../add-user-information/add-phone/add-phone.component';
 
 @Component({
   selector: 'app-new-user',
@@ -9,10 +12,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
+  modalRef?: BsModalRef;
+  config = {
+    backdrop: true,
+    ignoreBackdropClick: true,
+    class: 'modal-lg'
+  };
+
   user = {} as User;
   newUser = {} as User;
 
-  constructor(private bsModalRef: BsModalRef) { }
+  constructor(private readonly modalService: BsModalService, private bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
 
@@ -97,5 +107,17 @@ export class CreateUserComponent implements OnInit {
     }
 
     return true;
+  }
+
+  openEmailModal() {
+    this.bsModalRef = this.modalService.show(AddEmailComponent);
+  }
+
+  openAddressModal() {
+    this.bsModalRef = this.modalService.show(AddAdressComponent);
+  }
+
+  openPhoneModal() {
+    this.bsModalRef = this.modalService.show(AddPhoneComponent);
   }
 }
