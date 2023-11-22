@@ -179,11 +179,18 @@ export class ApiServices {
    * @param userId Código do usuário.
    * @returns Retorna um objeto do tipo User.
    */
-  async updatePassword(user: User, companyId?: string, userId?: string): Promise<User> {
+  async updatePassword(user: User, token: string): Promise<User> {
     try {
-      const headers = await this.headers();
+      const headers =  new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        Conection: 'keep-alive',
+        Accept: '*/*',
+        'Cache-Control': 'no-cache',
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      });
       const response: any = await lastValueFrom(
-        this.http.put(`${this.baseUrl}/api/users/update-password/${companyId}/${userId}`, user, { headers, withCredentials: true })
+        this.http.put(`${this.baseUrl}/api/users/update-password/${token}`, user, { headers, withCredentials: false })
       );
 
       return response;

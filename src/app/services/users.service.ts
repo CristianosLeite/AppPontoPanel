@@ -83,9 +83,7 @@ export class UsersService {
    * @param {User} user Usuário a ser atualizado.
   */
   async updateUser(user: User) {
-    await this.api.updateUser(user).then((response: any) => {
-      console.log(response);
-    });
+    return await this.api.updateUser(user);
   }
 
   /**
@@ -93,9 +91,7 @@ export class UsersService {
    * @param {User} user Usuário a ser deletado.
   */
   async deleteUser(companyId: string, userId: string) {
-    await this.api.deleteUser(companyId, userId).then((response: any) => {
-      console.log(response);
-    });
+    return await this.api.deleteUser(companyId, userId);
   }
 
   /**
@@ -103,18 +99,23 @@ export class UsersService {
    * @param {User} user Usuário a ser criado.
   */
   async createUser(user: User) {
-    await this.api.createUser(user).then((response: any) => {
-      console.log(response);
-    });
+    return await this.api.createUser(user);
   }
 
   /**
    * @description Redefine a senha do usuário.
    * @param {User} user Usuário a ter a senha redefinida.
   */
-  async updatePassword(user: User) {
-    await this.api.updatePassword(user).then((response: any) => {
-      console.log(response);
-    });
+  async updatePassword(user: User, token: string): Promise<boolean> {
+    try {
+      return await this.api.updatePassword(user, token).then((response: any) => {
+        if (response) {
+          return true;
+        }
+        return false;
+      });
+    } catch (error) {
+      return false;
+    }
   }
 }

@@ -1,0 +1,35 @@
+<body>
+  <alert class="alert" [type]="alert.type" [dismissible]="true" dismissOnTimeout="5000" *ngIf="alert.show">
+    {{ alert.msg }}
+  </alert>
+  <div class="container">
+    <alert type="success" *ngIf="alert.success">
+      <h4 class="alert-heading">Tudo certo!</h4>
+      <p>Você já pode acessar o sistema App Ponto.</p>
+      <p class="mb-0">Você será redirecionado para a tela de login. A senha informada será o seu código de usuário que
+        deverá ser informada junto do código fornecido pela sua organização.</p>
+    </alert>
+    <button class="btn btn-success" (click)="goToLogin()" *ngIf="alert.success">Ir para o login
+      <i class="fa fa-arrow-right"></i>
+    </button>
+    <div class="container" *ngIf="!alert.success">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Conclua o seu cadastro</h1>
+          <p>Para finalizar o seu cadastro, redefina a sua senha.</p>
+        </div>
+      </div>
+      <div class="card" [formGroup]="form" *ngIf="!alert.success">
+        <p>Informe uma senha</p>
+        <input type="password" formControlName="password">
+        <p>Confirme a senha</p>
+        <input type="password" formControlName="confirmPassword">
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary" (click)="updateUser()">Finalizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

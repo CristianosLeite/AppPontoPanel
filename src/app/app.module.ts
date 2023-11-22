@@ -7,7 +7,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { EnterprisesComponent } from './pages/enterprises/enterprises.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { NgForm } from '@angular/forms';
 import { AddEmailComponent } from './components/add-user-information/add-email/add-email.component';
@@ -40,6 +40,7 @@ import { FilterTagsComponent } from './components/filter-tags/filter-tags.compon
 import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-bar.component';
 import { ActionsBarComponent } from './components/actions-bar/actions-bar.component';
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -80,11 +81,13 @@ import { FinishRegistration } from './pages/finish-registration/finish-registrat
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
   ],
 
   providers: [BsModalService, NgForm, BsDropdownDirective],
