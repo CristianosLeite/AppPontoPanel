@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EndUserResgistrationComponent } from './end-user-resgistration.component';
+import { FinishRegistration } from './finish-registration';
 
 describe('EndUserResgistrationComponent', () => {
-  let component: EndUserResgistrationComponent;
-  let fixture: ComponentFixture<EndUserResgistrationComponent>;
+  let component: FinishRegistration;
+  let fixture: ComponentFixture<FinishRegistration>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EndUserResgistrationComponent]
+      declarations: [FinishRegistration]
     });
-    fixture = TestBed.createComponent(EndUserResgistrationComponent);
+    fixture = TestBed.createComponent(FinishRegistration);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

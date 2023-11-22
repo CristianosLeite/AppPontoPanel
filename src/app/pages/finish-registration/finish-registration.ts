@@ -5,10 +5,10 @@ import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-end-user-resgistration',
-  templateUrl: './end-user-resgistration.component.html',
-  styleUrls: ['./end-user-resgistration.component.scss']
+  templateUrl: './finish-registration.html',
+  styleUrls: ['./finish-registration.scss']
 })
-export class EndUserResgistrationComponent {
+export class FinishRegistration {
   user = {} as User;
 
   constructor(private readonly usersService: UsersService) { }
