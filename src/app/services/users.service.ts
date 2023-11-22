@@ -92,8 +92,8 @@ export class UsersService {
    * @description Deleta o usuário.
    * @param {User} user Usuário a ser deletado.
   */
-  async deleteUser(user: User) {
-    await this.api.deleteUser(user).then((response: any) => {
+  async deleteUser(companyId: string, userId: string) {
+    await this.api.deleteUser(companyId, userId).then((response: any) => {
       console.log(response);
     });
   }
