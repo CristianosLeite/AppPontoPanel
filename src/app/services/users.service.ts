@@ -77,4 +77,44 @@ export class UsersService {
     this.usersSelected.emit(this.selectedUsers);
     return this.selectedUsers;
   }
+
+  /**
+   * @description Atualiza os dados do usuário.
+   * @param {User} user Usuário a ser atualizado.
+  */
+  async updateUser(user: User) {
+    await this.api.updateUser(user).then((response: any) => {
+      console.log(response);
+    });
+  }
+
+  /**
+   * @description Deleta o usuário.
+   * @param {User} user Usuário a ser deletado.
+  */
+  async deleteUser(user: User) {
+    await this.api.deleteUser(user).then((response: any) => {
+      console.log(response);
+    });
+  }
+
+  /**
+   * @description Cria um novo usuário.
+   * @param {User} user Usuário a ser criado.
+  */
+  async createUser(user: User) {
+    await this.api.createUser(user).then((response: any) => {
+      console.log(response);
+    });
+  }
+
+  /**
+   * @description Redefine a senha do usuário.
+   * @param {User} user Usuário a ter a senha redefinida.
+  */
+  async updatePassword(user: User) {
+    await this.api.updatePassword(user).then((response: any) => {
+      console.log(response);
+    });
+  }
 }

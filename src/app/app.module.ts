@@ -39,6 +39,7 @@ import { UsersComponentComponent } from './components/users-component/users-comp
 import { FilterTagsComponent } from './components/filter-tags/filter-tags.component';
 import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-bar.component';
 import { ActionsBarComponent } from './components/actions-bar/actions-bar.component';
+import { EndUserResgistrationComponent } from './pages/end-user-resgistration/end-user-resgistration.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ActionsBarComponent } from './components/actions-bar/actions-bar.compon
     FilterTagsComponent,
     UsersToolBarComponent,
     ActionsBarComponent,
+    EndUserResgistrationComponent,
   ],
   imports: [
     BrowserModule,

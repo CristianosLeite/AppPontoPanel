@@ -135,6 +135,83 @@ export class ApiServices {
   }
 
   /**
+   * @description Cadastrar um novo usuário.
+   * @param user Objeto do tipo User.
+   * @returns Retorna um objeto do tipo User.
+   */
+  async createUser(user: User): Promise<User> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.post(`${this.baseUrl}/api/users/create`, user, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @description Atualiza os dados de um usuário.
+   * @param user Objeto do tipo User.
+   * @param companyId Código da empresa.
+   * @param userId Código do usuário.
+   * @returns Retorna um objeto do tipo User.
+   */
+  async updateUser(user: User, companyId?: string, userId?: string): Promise<User> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.put(`${this.baseUrl}/api/users/update/${companyId}/${userId}`, user, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @description Atualiza a senha de um usuário.
+   * @param user Objeto do tipo User.
+   * @param companyId Código da empresa.
+   * @param userId Código do usuário.
+   * @returns Retorna um objeto do tipo User.
+   */
+  async updatePassword(user: User, companyId?: string, userId?: string): Promise<User> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.put(`${this.baseUrl}/api/users/update-password/${companyId}/${userId}`, user, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @description Deleta um usuário.
+   * @param companyId Código da empresa.
+   * @param userId Código do usuário.
+   * @returns Retorna um objeto do tipo User.
+   */
+  async deleteUser(companyId: string, userId: string): Promise<User> {
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.delete(`${this.baseUrl}/api/users/delete/${companyId}/${userId}`, { headers, withCredentials: true })
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
    * @description Busca todos os registros de ponto cadastrados no sistema por data.
    * @returns Retorna um array de objetos do tipo Record.
    * @throws Retorna um erro caso não seja possível buscar os registros de ponto.
