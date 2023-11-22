@@ -49,10 +49,13 @@ export class FinishRegistration implements OnInit {
       return;
     }
 
+    this.user.cod_user = this.form.value.password!.toString();
+
     this.usersService.updatePassword(this.user, this.token)
       .then((response) => {
         if (response) {
           this.showAlert('success', 'Senha atualizada com sucesso.');
+          this.alert.success = true;
         } else {
           this.showAlert('danger', 'Erro ao atualizar a senha.');
         }
@@ -86,5 +89,7 @@ export class FinishRegistration implements OnInit {
     this.alert.type = '';
   }
 
-  goToLogin() { }
+  goToLogin() {
+    window.location.href = '/login';
+  }
 }

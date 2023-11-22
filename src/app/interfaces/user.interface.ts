@@ -6,6 +6,7 @@ import { Phone } from './phone.interface';
  * @description Interface de usuário
  * @param user_id Identificador único do usuário
  * @param company_id Identificador único da empresa
+ * @param cod_user Código do usuário
  * @param first_name Primeiro nome do usuário
  * @param last_name Sobrenome do usuário
  * @param register_number Número do CPF do usuário
@@ -25,6 +26,7 @@ import { Phone } from './phone.interface';
 export interface User {
   user_id: string;
   company_id: string;
+  cod_user: string;
   first_name: string;
   last_name: string;
   register_number: string;

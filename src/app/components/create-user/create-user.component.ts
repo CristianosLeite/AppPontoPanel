@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AddEmailComponent } from '../add-user-information/add-email/add-email.component';
 import { AddAdressComponent } from '../add-user-information/add-adress/add-adress.component';
 import { AddPhoneComponent } from '../add-user-information/add-phone/add-phone.component';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-new-user',
@@ -22,7 +23,18 @@ export class CreateUserComponent implements OnInit {
   user = {} as User;
   newUser = {} as User;
 
-  constructor(private readonly modalService: BsModalService, private bsModalRef: BsModalRef) { }
+  alert = {
+    show: false,
+    msg: '',
+    type: '',
+    success: false
+  }
+
+  constructor(
+    private readonly modalService: BsModalService,
+    private bsModalRef: BsModalRef,
+    private readonly usersService: UsersService
+  ) { }
 
   ngOnInit(): void {
 
@@ -109,6 +121,17 @@ export class CreateUserComponent implements OnInit {
     return true;
   }
 
+  createUser() {
+    this.usersService.createUser(this.newUser)
+      .then((response) => {
+        if (response) {
+          this.showAlert('success', 'Usuário criado com sucesso.');
+        } else {
+          this.showAlert('danger', 'Erro ao criar usuário.');
+        }
+      });
+  }
+
   openEmailModal() {
     this.bsModalRef = this.modalService.show(AddEmailComponent);
   }
@@ -119,5 +142,23 @@ export class CreateUserComponent implements OnInit {
 
   openPhoneModal() {
     this.bsModalRef = this.modalService.show(AddPhoneComponent);
+  }
+
+  showAlert(type: string, msg: string) {
+    this.alert.show = true;
+    this.alert.msg = msg;
+    this.alert.type = type;
+
+    setTimeout(() => {
+      this.resetAlert();
+    }, 5000);
+
+    this.closeModal();
+  }
+
+  resetAlert() {
+    this.alert.show = false;
+    this.alert.msg = '';
+    this.alert.type = '';
   }
 }
