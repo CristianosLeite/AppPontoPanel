@@ -90,6 +90,6 @@ export class FinishRegistration implements OnInit {
   }
 
   goToLogin() {
-    window.location.href = '/login';
+    window.location.href = '/#';
   }
 }
