@@ -12,6 +12,7 @@ import { Phone } from './phone.interface';
  * @param register_number Número do CPF do usuário
  * @param email Email do usuário
  * @param role Cargo do usuário
+ * @param situation Situação do usuário (Activated, Deactivated, Blocked)
  * @param created_at Data de criação do usuário
  * @param adresses Endereços do usuário
  * @param phones Telefones do usuário
@@ -32,6 +33,7 @@ export interface User {
   register_number: string;
   email: string;
   role: string;
+  situation: string;
   created_at?: string;
   adresses?: Adress[];
   phones?: Phone[];
@@ -60,7 +62,7 @@ export interface User {
  /**
   * @description Indica se o usuário está selecionado na tabela.
   */
- selected?: boolean;
+  selected?: boolean;
   extraHours: () => string;
   /**
    * @returns Retorna a quantidade de horas que o usuário deveria ter trabalhado no dia
