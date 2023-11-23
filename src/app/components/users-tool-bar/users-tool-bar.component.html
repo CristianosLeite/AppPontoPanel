@@ -32,7 +32,7 @@
   </div>
 
   <div class="icons">
-    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? deleteUser() : null"
+    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? disableUser(selectedUsers[0]) : null"
       [class.disabled]="isMultipleSelected || !isSingleSelected">
       <i class="bi bi-trash-fill"></i>
       <p>Excluir usuário</p>

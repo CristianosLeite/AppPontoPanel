@@ -18,7 +18,12 @@ export class UsersToolBarComponent implements OnInit {
     class: 'modal-lg'
   };
 
-  constructor(private readonly modalService: BsModalService, private readonly usersService: UsersService) { }
+  isLoading: boolean = false;
+
+  constructor(
+    private readonly modalService: BsModalService,
+    private readonly usersService: UsersService,
+  ) { }
 
   bsModalRef: BsModalRef | undefined;
 
@@ -51,7 +56,7 @@ export class UsersToolBarComponent implements OnInit {
     alert('Função não implementada!');
   }
 
-  deleteUser() {
-    alert('Função não implementada!');
+  disableUser(user: User) {
+    this.usersService.disableUser(user);
   }
 }

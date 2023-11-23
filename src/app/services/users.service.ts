@@ -118,4 +118,21 @@ export class UsersService {
       return false;
     }
   }
+
+  /**
+   * @description Desativa um usuário.
+   * @param {User} user Usuário a ser desativado.
+  */
+  async disableUser(user: User) {
+    try {
+      return await this.api.disableUser(user).then((response: any) => {
+        if (response) {
+          return true;
+        }
+        return false;
+      });
+    } catch (error) {
+      return false;
+    }
+  }
 }

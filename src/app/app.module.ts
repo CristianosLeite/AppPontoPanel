@@ -41,6 +41,7 @@ import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-ba
 import { ActionsBarComponent } from './components/actions-bar/actions-bar.component';
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     UsersToolBarComponent,
     ActionsBarComponent,
     FinishRegistration,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
