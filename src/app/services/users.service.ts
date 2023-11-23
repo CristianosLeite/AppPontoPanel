@@ -91,7 +91,20 @@ export class UsersService {
    * @param {User} user Usuário a ser deletado.
   */
   async deleteUser(companyId: string, userId: string) {
-    return await this.api.deleteUser(companyId, userId);
+    try {
+      return await this.api.deleteUser(companyId, userId).then((response: any) => {
+        if (response) {
+          this.api.getAllUsers().then((users: User[]) => {
+            this.users = users;
+            this.usersLoaded.emit(this.users);
+          });
+          return true;
+        }
+        return false;
+      });
+    } catch (error) {
+      return false;
+    }
   }
 
   /**
@@ -99,7 +112,20 @@ export class UsersService {
    * @param {User} user Usuário a ser criado.
   */
   async createUser(user: User) {
-    return await this.api.createUser(user);
+    try {
+      return await this.api.createUser(user).then((response: any) => {
+        if (response) {
+          this.api.getAllUsers().then((users: User[]) => {
+            this.users = users;
+            this.usersLoaded.emit(this.users);
+          });
+          return true;
+        }
+        return false;
+      });
+    } catch (error) {
+      return false;
+    }
   }
 
   /**
@@ -127,6 +153,10 @@ export class UsersService {
     try {
       return await this.api.disableUser(user).then((response: any) => {
         if (response) {
+          this.api.getAllUsers().then((users: User[]) => {
+            this.users = users;
+            this.usersLoaded.emit(this.users);
+          });
           return true;
         }
         return false;
