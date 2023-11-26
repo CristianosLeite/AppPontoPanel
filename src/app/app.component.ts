@@ -9,10 +9,14 @@ import { DatabaseService } from './services/database.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private readonly loading: LoadingService, private readonly database: DatabaseService) { }
+  constructor(
+    private readonly loading: LoadingService,
+    private readonly database: DatabaseService,
+  ) { }
 
   isLoading: boolean = false;
   role: string = '';
+  param: string = '';
 
   ngOnInit(): void {
     this.loading.isLoading.subscribe((loading: boolean) => {
@@ -21,8 +25,12 @@ export class AppComponent implements OnInit {
     console.log('Seja bem vindo ao sistema de controle de ponto da Conecsa.')
     this.database.getUser().then((user: any) => {
       this.role = user.role;
-    }).catch((error: any) => {
+    }).catch(() => {
       console.log('Necessário login para continuar.');
     });
+  }
+
+  setParam(param: string) {
+    this.param = param;
   }
 }

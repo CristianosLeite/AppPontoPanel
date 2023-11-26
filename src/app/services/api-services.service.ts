@@ -64,7 +64,6 @@ export class ApiServices {
       this.loading.setLoading(false);
       throw error;
     }
-    this.loading.setLoading(false);
   }
 
   /**

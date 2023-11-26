@@ -20,12 +20,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   async validateToken() {
-    try {
-      await this.apiService.validateToken().then(() => {
-        this.router.navigate(['/home']);
-      });
-    } catch (error) {
-      //console.log(error);
-    }
+    await this.apiService.validateToken().then(() => {
+      this.router.navigate(['/home']);
+    }).catch(() => {
+      console.log('Token inválido ou não encontrado.');
+    });
   }
 }
