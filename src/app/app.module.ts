@@ -42,6 +42,7 @@ import { ActionsBarComponent } from './components/actions-bar/actions-bar.compon
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     ActionsBarComponent,
     FinishRegistration,
     LoadingComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

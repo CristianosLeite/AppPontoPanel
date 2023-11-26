@@ -26,6 +26,8 @@ export class LoadingService {
   */
   setLoading(loading: boolean) {
     this.loading = loading;
-    this.isLoading.emit(this.loading);
+    setTimeout(() => {
+      this.isLoading.emit(this.loading);
+    }, 300);
   }
 }

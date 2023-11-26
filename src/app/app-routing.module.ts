@@ -8,6 +8,8 @@ import { ManagerComponent } from './pages/home/manager/manager.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 
 const routes: Routes = [
   {
@@ -69,6 +71,23 @@ const routes: Routes = [
         component: FinishRegistration,
       },
     ],
+  },
+
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    data: { title: 'Página não encontrada' },
+    children: [
+      {
+        path: 'not-found',
+        component: NotFoundComponent,
+      },
+    ],
+  },
+
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

@@ -7,8 +7,6 @@ import { Component, Output } from '@angular/core';
 })
 export class LoadingComponent {
 
-    @Output() loading: boolean = false;
-
-    constructor() { }
+  @Output() loading: boolean = false;
 
 }

@@ -1,2 +1,4 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <router-outlet></router-outlet>
+<!-- Not Found -->
+<app-not-found *ngIf="!role && !isLoading"></app-not-found>

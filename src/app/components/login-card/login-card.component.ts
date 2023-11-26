@@ -20,14 +20,18 @@ export class LoginCardComponent {
   async requestLogin() {
     try {
       await this.apiService.login(this.cod_company, this.cod_user).then(async (response: any) => {
-        response ? this.router.navigate(['/home']) : this.navigate();
+        if (response) {
+          await this.router.navigate(['/home']);
+          this.resetInputs();
+        }
       });
       } catch (error) {
       throw error;
     }
   }
 
-  navigate() {
-    window.location.href = `${this.apiService.baseUrl}/api/login?cod_company=${this.cod_company}&cod_user=${this.cod_user}`;
+  private resetInputs() {
+    this.cod_company = '';
+    this.cod_user = '';
   }
 }

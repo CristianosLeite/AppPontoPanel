@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from './services/loading.service';
+import { DatabaseService } from './services/database.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,20 @@ import { LoadingService } from './services/loading.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private readonly loading: LoadingService) { }
+  constructor(private readonly loading: LoadingService, private readonly database: DatabaseService) { }
 
   isLoading: boolean = false;
+  role: string = '';
 
   ngOnInit(): void {
     this.loading.isLoading.subscribe((loading: boolean) => {
       this.isLoading = loading;
+    });
+    console.log('Seja bem vindo ao sistema de controle de ponto da Conecsa.')
+    this.database.getUser().then((user: any) => {
+      this.role = user.role;
+    }).catch((error: any) => {
+      console.log('Necessário login para continuar.');
     });
   }
 }
