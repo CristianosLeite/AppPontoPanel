@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotFoundService } from '../../services/not-found.service';
 
 @Component({
   selector: 'app-not-found',
@@ -12,8 +13,8 @@ export class NotFoundComponent implements OnInit {
   code = 404;
   message = 'A página que você está procurando não existe, foi removida ou está temporáriamente indisponível';
 
-  constructor(private route: ActivatedRoute) {}
-  @Output() param = new EventEmitter<string>();
+  constructor(private route: ActivatedRoute, private readonly service: NotFoundService) {}
+  @Input() param = new EventEmitter<string>();
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -23,6 +24,9 @@ export class NotFoundComponent implements OnInit {
         this.message = params['Message'];
         this.param.emit('serverError');
       }
+    });
+    this.service.notFound.subscribe((param: string) => {
+      this.param.emit(param);
     });
   }
 }

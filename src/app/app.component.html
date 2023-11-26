@@ -1,4 +1,4 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <router-outlet></router-outlet>
 <!-- Not Found -->
-<app-not-found *ngIf="!role && !isLoading && param !== 'serverError'" (param)="setParam($event)"></app-not-found>
+<app-not-found *ngIf="!role && !isLoading && param === 'clientError'" (param)="setParam($event)"></app-not-found>

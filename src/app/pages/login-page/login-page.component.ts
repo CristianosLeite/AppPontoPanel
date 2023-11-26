@@ -1,29 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiServices } from '../../services/api-services.service';
-import { Router } from '@angular/router';
-
+import { Component } from '@angular/core';
+import { NotFoundService } from 'src/app/services/not-found.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
 
-  constructor(
-    private readonly apiService: ApiServices,
-    private readonly router: Router,
-  ) { }
+  constructor(private readonly notFound: NotFoundService) { }
 
-  async ngOnInit(): Promise<void> {
-    await this.validateToken();
-  }
-
-  async validateToken() {
-    await this.apiService.validateToken().then(() => {
-      this.router.navigate(['/home']);
-    }).catch(() => {
-      console.log('Token inválido ou não encontrado.');
-    });
+  notFoundError() {
+    this.notFound.notFound.emit('');
   }
 }
