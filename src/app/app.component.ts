@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from './services/loading.service';
-import { DatabaseService } from './services/database.service';
 import { ApiServices } from './services/api-services.service';
 import { Router } from '@angular/router';
 import { NotFoundService } from './services/not-found.service';
-import { Response } from './services/api-services.service';
+import { UsersService } from './services/users.service';
+import { Role } from './interfaces/role.interface';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly loading: LoadingService,
-    private readonly database: DatabaseService,
     private readonly apiService: ApiServices,
     private readonly router: Router,
-    private readonly notFound: NotFoundService
+    private readonly notFound: NotFoundService,
+    private readonly usersService: UsersService
   ) { }
 
   isLoading: boolean = false;
-  role: string = '';
+  role: Role | undefined = undefined;
   param: string = '';
 
   ngOnInit(): void {
@@ -40,15 +40,16 @@ export class AppComponent implements OnInit {
 
   async validateToken(): Promise<void> {
     this.param = '';
-      await this.apiService.validateToken().then(async (response: Response) => {
-      await this.database.saveUser(response.user);
-      this.router.navigate(['/home']);
+      await this.apiService.validateToken().then(async () => {
+      await this.usersService.getLoggedUser().then(() => {
+        this.role = this.usersService.user?.role;
+        this.router.navigate(['/home']);
+      })
     }).catch(() => {
       console.log('Token inválido ou não encontrado.');
     });
-  }
-
-  setParam(param: Event) {
-    this.param = param.toString();
+    this.usersService.userLogged.subscribe((user: Role) => {
+      this.role = user;
+    });
   }
 }

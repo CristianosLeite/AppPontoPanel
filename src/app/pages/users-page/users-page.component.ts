@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
-import { DatabaseService } from 'src/app/services/database.service';
 import { NotFoundService } from 'src/app/services/not-found.service';
+import { Role } from 'src/app/interfaces/role.interface';
 
 @Component({
   selector: 'app-users-page',
@@ -13,19 +13,17 @@ export class UsersPageComponent implements OnInit {
 
   constructor(
     private readonly usersService: UsersService,
-    private readonly database: DatabaseService,
     private readonly notFound: NotFoundService
-    ) { }
+  ) { }
 
-  role: string | null = null
+  role: Role | undefined = undefined;
 
   ngOnInit() {
-    this.database.getUser().then(user => {
-      this.role = user.roles.role;
-    }).catch(() => {
-      console.log('Usuário não autenticado.');
-      this.notFound.notFound.emit('clientError');
+    this.role = this.usersService.user?.role;
+    this.usersService.userLogged.subscribe((user: User) => {
+      this.role = user.role;
     });
+    this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
   }
 
   filterUsers(tags: string[]) {

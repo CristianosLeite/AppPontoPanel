@@ -12,6 +12,12 @@ export class UsersService {
 
   constructor(private readonly api: ApiServices) { }
   /**
+   * @description Evento que emite o usuário logado.
+   * @returns {User} Usuário logado.
+   * @default null
+  */
+  @Output() userLogged = new EventEmitter<User>();
+  /**
    * @description Evento que emite os usuários carregados.
    * @returns {User[]} Lista de usuários.
   */
@@ -23,6 +29,13 @@ export class UsersService {
   @Output() usersSelected = new EventEmitter<User[]>();
 
   /**
+   * @description Usuário logado.
+   * @returns {User} Usuário logado.
+   * @default null
+  */
+  user: User | null = null;
+
+  /**
    * @description Lista de usuários.
   */
   users = [] as User[];
@@ -31,6 +44,16 @@ export class UsersService {
    * @description Lista de usuários selecionados.
   */
   selectedUsers = [] as User[];
+
+  /**
+   * @description Usuário logado.
+  */
+  async getLoggedUser() {
+    await this.api.getSelfUser().then((user: User) => {
+      this.user = user;
+      this.userLogged.emit(this.user);
+    });
+  }
 
   /**
    * @description Busca todos os usuários e emite um evento com os usuários carregados.

@@ -8,11 +8,12 @@ import { Role } from './role.interface';
  * @param user_id Identificador único do usuário
  * @param company_id Identificador único da empresa
  * @param cod_user Código do usuário
+ * @param name Nome completo do usuário
  * @param first_name Primeiro nome do usuário
  * @param last_name Sobrenome do usuário
  * @param register_number Número do CPF do usuário
  * @param email Email do usuário
- * @param role Cargo do usuário
+ * @param role Nível de acesso do usuário
  * @param situation Situação do usuário (Activated, Deactivated, Blocked)
  * @param created_at Data de criação do usuário
  * @param adresses Endereços do usuário
@@ -29,11 +30,12 @@ export interface User {
   user_id: string;
   company_id: string;
   cod_user: string;
+  name: string;
   first_name: string;
   last_name: string;
   register_number: string;
   email: string;
-  roles: Role;
+  role: Role;
   situation: string;
   created_at?: string;
   adresses?: Adress[];

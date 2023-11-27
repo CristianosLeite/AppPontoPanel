@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { Enterprise } from '../interfaces/enterprise.interface';
 import { User } from '../interfaces/user.interface';
-import { DatabaseService } from './database.service';
 import { Record } from '../interfaces/record.interface';
 import { Pending } from '../interfaces/pendings.interface';
 import { Solicitation } from '../interfaces/solicitations.interface';
@@ -11,7 +10,7 @@ import { LoadingService } from './loading.service';
 
 
 export type Response = {
-  user: User;
+  data: User;
   token: string;
   message: string;
 };
@@ -34,7 +33,7 @@ export class ApiServices {
   user = {} as User;
   enterprise = {} as Enterprise;
 
-  constructor(private http: HttpClient, private database: DatabaseService, private loading: LoadingService) { }
+  constructor(private http: HttpClient, private loading: LoadingService) { }
 
   /**
    * @description Retorna o cabeçalho da requisição.
@@ -328,7 +327,6 @@ export class ApiServices {
     try {
       window.location.assign(`${this.baseUrl}/api/logout`);
       sessionStorage.clear();
-      this.database.destroyDatabase();
     }
     catch (error) {
       this.loading.setLoading(false);
