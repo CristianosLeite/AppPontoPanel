@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { Record } from '../interfaces/record.interface';
 import { TimeObject } from '../interfaces/hours-bank.interface';
+import { ApiServices } from './api-services.service';
 
 /**
  * @description Serviço responsável por processar os registros de ponto dos usuários.
@@ -11,12 +12,15 @@ import { TimeObject } from '../interfaces/hours-bank.interface';
 })
 export class RecordsService {
 
-  constructor() { }
+  date = new Date().toUTCString();
+  records = [] as Record[];
+
+  constructor(private readonly api: ApiServices) { }
 
   /**
   * Calcula a diferença entre dois valores de tempo e retorna uma string formatada com os valores positivos.
   */
-   private calculateTimeDifference(greaterTime: number, lowerTime: number): string {
+  private calculateTimeDifference(greaterTime: number, lowerTime: number): string {
     let hours = Math.floor((greaterTime - lowerTime) / 3600000);
     let minutes = Math.floor(((greaterTime - lowerTime) % 3600000) / 60000);
     let seconds = Math.floor((((greaterTime - lowerTime) % 3600000) % 60000) / 1000);
@@ -30,7 +34,7 @@ export class RecordsService {
   * @param {number} lowerTime Valor de tempo menor.
   * @param {boolean} isNegative Indica se o retorno aceita valores negativos.
   */
-  private calculateInversedTimeDifference(greaterTime: number, lowerTime: number,  isNegative?: boolean): string {
+  private calculateInversedTimeDifference(greaterTime: number, lowerTime: number, isNegative?: boolean): string {
     // É subtraído 1 hora e 1 minuto para que o resultado seja o tempo restante para o usuário cumprir a carga horária.
     let hours = Math.floor((lowerTime - greaterTime) / 3600000) * -1 - 1;
     let minutes = Math.floor(((lowerTime - greaterTime) % 3600000) / 60000) * -1 - 1;
@@ -154,19 +158,19 @@ export class RecordsService {
         * O resultado será negativo se a carga horária esperada for menor que a carga horária cumprida.
         * Inverter a ordem dos valores causa comportamento inesperado.
       */
-     const timeDifference:string[] = [];
-     this.calculateInversedTimeDifference(expectedHour, workedHours, true).split(':').forEach((value) => {
-       // Horas extras será verdade se horas faltantes for menor que 0.
-       // Neste caso, o valor de horas extras será o valor inverso de horas faltantes.
-       timeDifference.push(`${Number(value) < 0 ? Number(value) * -1 : 0}`);
+      const timeDifference: string[] = [];
+      this.calculateInversedTimeDifference(expectedHour, workedHours, true).split(':').forEach((value) => {
+        // Horas extras será verdade se horas faltantes for menor que 0.
+        // Neste caso, o valor de horas extras será o valor inverso de horas faltantes.
+        timeDifference.push(`${Number(value) < 0 ? Number(value) * -1 : 0}`);
       });
 
       // Formata o valor de horas extras para o formato HH:MM:SS.
-      let extraHours = this.formatTime(Number(timeDifference[0]) -1, Number(timeDifference[1]) -1, Number(timeDifference[2]) -1);
+      let extraHours = this.formatTime(Number(timeDifference[0]) - 1, Number(timeDifference[1]) - 1, Number(timeDifference[2]) - 1);
 
       totalWorkedHours === extraHours ? extraHours = '00:00:00' : extraHours = extraHours;
-        // Retorna total de horas extras.
-        return extraHours;
+      // Retorna total de horas extras.
+      return extraHours;
     }
   }
 
@@ -218,5 +222,15 @@ export class RecordsService {
 
       return this.formatTime(Number(totalHours[0]), Number(totalHours[1]), Number(totalHours[2]));
     };
+  }
+
+  /**
+   * @description Busca todos os registros de ponto cadastrados no sistema.
+  */
+  async getRecords(): Promise<Record[]> {
+    await this.api.getAllRecordsByDate(this.date).then((response: Record[]) => {
+      this.records = response;
+    });
+    return this.records;
   }
 }

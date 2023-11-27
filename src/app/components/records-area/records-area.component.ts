@@ -1,10 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { ApiServices } from '../../services/api-services.service';
 import { Record } from '../../interfaces/record.interface';
 import { User } from '../../interfaces/user.interface';
 import { interval, Subscription } from 'rxjs';
 import { RecordsService } from 'src/app/services/records.service';
+import { UsersService } from 'src/app/services/users.service';
 
 /**
  * @description Exibe registro de ponto de todos os usuários na tela inicial do painel do gestor.
@@ -42,17 +42,21 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   date = new Date().toUTCString();
-  loggedUser = {} as User;
+  loggedUser: User | null = null;
   users = [] as User[];
   records = [] as Record[];
 
   loaded: boolean = false;
 
-  constructor(private readonly api: ApiServices, private readonly record: RecordsService) { }
+  constructor(
+    private readonly recordsService: RecordsService,
+    private readonly usersService: UsersService
+    ) { }
 
   async ngOnInit() {
-    await this.api.getSelfUser().then((response: User) => {
-      this.loggedUser = response;
+    this.loggedUser = this.usersService.user;
+    this.usersService.userLogged.subscribe((user: User) => {
+      this.loggedUser = user;
     });
     await Promise.all([this.getUsers(), this.getRecords()]);
     this.loadRecordsArea();
@@ -74,7 +78,7 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
    * @description Busca todos os usuários cadastrados no sistema.
   */
   async getUsers() {
-    await this.api.getAllUsers().then((response: User[]) => {
+    await this.usersService.getUsers().then((response: User[]) => {
       this.users = response;
     });
   }
@@ -83,7 +87,7 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
    * @description Busca todos os registros de ponto cadastrados no sistema.
   */
   async getRecords() {
-    await this.api.getAllRecordsByDate(this.date).then((response: Record[]) => {
+    await this.recordsService.getRecords().then((response: Record[]) => {
       this.records = response;
     });
   }
@@ -102,9 +106,9 @@ export class RecordsAreaComponent implements OnInit, OnChanges, OnDestroy {
       });
       if (userRecords.length > 0) {
         if (userRecords.length === 1) {
-          this.record.processSingleRecord(user, userRecords);
+          this.recordsService.processSingleRecord(user, userRecords);
         } else if (userRecords.length > 1) {
-          this.record.processMultipleRecords(user, userRecords);
+          this.recordsService.processMultipleRecords(user, userRecords);
         }
       } else {
         user.status = false;
