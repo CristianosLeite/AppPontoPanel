@@ -4,7 +4,7 @@ import { DatabaseService } from './services/database.service';
 import { ApiServices } from './services/api-services.service';
 import { Router } from '@angular/router';
 import { NotFoundService } from './services/not-found.service';
-
+import { Response } from './services/api-services.service';
 
 @Component({
   selector: 'app-root',
@@ -29,12 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Seja bem vindo ao sistema de controle de ponto da Conecsa.')
-    this.validateToken().then(async (response: any) => {
-      await this.database.saveUser(response.user);
-      this.role = response.user.role;
-    }).catch(() => {
-      console.log('Necessário login.');
-    });
+    this.validateToken();
     this.loading.isLoading.subscribe((loading: boolean) => {
       this.isLoading = loading;
     });
@@ -43,9 +38,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async validateToken() {
+  async validateToken(): Promise<void> {
     this.param = '';
-    await this.apiService.validateToken().then(() => {
+      await this.apiService.validateToken().then(async (response: Response) => {
+      await this.database.saveUser(response.user);
       this.router.navigate(['/home']);
     }).catch(() => {
       console.log('Token inválido ou não encontrado.');

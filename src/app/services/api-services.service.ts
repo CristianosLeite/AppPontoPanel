@@ -10,6 +10,12 @@ import { Solicitation } from '../interfaces/solicitations.interface';
 import { LoadingService } from './loading.service';
 
 
+export type Response = {
+  user: User;
+  token: string;
+  message: string;
+};
+
 /**
  * @description Serviço responsável por realizar as requisições à API.
 */
@@ -71,14 +77,12 @@ export class ApiServices {
    * @returns Retorna um objeto do tipo User.
    * @throws Retorna um erro caso não seja possível buscar as informações do usuário.
   */
-  async validateToken(): Promise<object> {
+  async validateToken(): Promise<Response> {
     this.loading.setLoading(true);
     try {
       const response: any = await lastValueFrom(
         this.http.post(`${this.baseUrl}/api/login/validate-token`, null, { withCredentials: true })
       );
-
-      await this.database.saveUser(response.user);
 
       this.loading.setLoading(false);
       return response;
