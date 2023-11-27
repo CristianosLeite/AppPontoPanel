@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/user.interface';
-import { Subscription, interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { NotFoundService } from 'src/app/services/not-found.service';
 
 @Component({
