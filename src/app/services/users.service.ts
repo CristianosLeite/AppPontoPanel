@@ -165,4 +165,11 @@ export class UsersService {
       return false;
     }
   }
+
+  /**
+   * @description desloga o usuário e rotorna ao estado inicial da aplicação.
+  */
+  logout() {
+    this.api.logout();
+  }
 }

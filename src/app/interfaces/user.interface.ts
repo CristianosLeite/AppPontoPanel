@@ -1,6 +1,7 @@
 import { Adress } from './adress.interface';
 import { Enterprise } from './enterprise.interface';
 import { Phone } from './phone.interface';
+import { Role } from './role.interface';
 
 /**
  * @description Interface de usuário
@@ -32,7 +33,7 @@ export interface User {
   last_name: string;
   register_number: string;
   email: string;
-  role: string;
+  roles: Role;
   situation: string;
   created_at?: string;
   adresses?: Adress[];

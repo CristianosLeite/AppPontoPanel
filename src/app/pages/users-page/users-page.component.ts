@@ -21,7 +21,7 @@ export class UsersPageComponent implements OnInit {
 
   ngOnInit() {
     this.database.getUser().then(user => {
-      this.role = user.role
+      this.role = user.roles.role;
     }).catch(() => {
       console.log('Usuário não autenticado.');
       this.notFound.notFound.emit('clientError');

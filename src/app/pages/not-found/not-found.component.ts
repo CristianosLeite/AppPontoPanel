@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotFoundService } from '../../services/not-found.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-not-found',
@@ -15,7 +16,8 @@ export class NotFoundComponent implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly service: NotFoundService
+    private readonly service: NotFoundService,
+    private readonly usersService: UsersService
     ) {}
   @Input() param = new EventEmitter<string>();
 
@@ -34,7 +36,6 @@ export class NotFoundComponent implements OnInit {
   }
 
   reloadApplication() {
-    window.location.href = '/#';
-    window.location.reload();
+    this.usersService.logout();
   }
 }
