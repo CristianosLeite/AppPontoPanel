@@ -13,11 +13,14 @@ export class NotFoundComponent implements OnInit {
   code = 404;
   message = 'A página que você está procurando não existe, foi removida ou está temporáriamente indisponível';
 
-  constructor(private route: ActivatedRoute, private readonly service: NotFoundService) {}
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly service: NotFoundService
+    ) {}
   @Input() param = new EventEmitter<string>();
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       if (params['Error']) {
         this.error = params['Error'];
         this.code = params['Code'];
@@ -28,5 +31,10 @@ export class NotFoundComponent implements OnInit {
     this.service.notFound.subscribe((param: string) => {
       this.param.emit(param);
     });
+  }
+
+  reloadApplication() {
+    window.location.href = '/#';
+    window.location.reload();
   }
 }

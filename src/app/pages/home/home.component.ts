@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/user.interface';
 import { Subscription, interval } from 'rxjs';
+import { NotFoundService } from 'src/app/services/not-found.service';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,15 @@ export class HomeComponent implements OnInit, OnChanges {
 
   role = '';
 
-  constructor(private readonly database: DatabaseService) {};
+  constructor(private readonly database: DatabaseService, private readonly notFound: NotFoundService) {};
 
-  async ngOnInit(): Promise<void> {
-    this.subscription.add(interval(30000).subscribe(async () => {
-      await this.getRole();
-    }));
-    await this.getRole();
+  ngOnInit(): void {
+    this.database.getUser().then(user => {
+      this.role = user.role
+    }).catch(() => {
+      console.log('Usuário não autenticado.');
+      this.notFound.notFound.emit('clientError');
+    });
   }
 
   ngOnChanges(): void {
