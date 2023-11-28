@@ -16,11 +16,14 @@ export class HomeComponent implements OnInit {
   constructor(private readonly notFound: NotFoundService, private readonly usersService: UsersService) { };
 
   ngOnInit(): void {
-    this.role = this.usersService.user?.role.role_name;
-    this.usersService.userLogged.subscribe((user: User) => {
-      console.log(user.role.role_name);
-      this.role = user.role.role_name;
-    });
-    this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
+    try {
+      this.role = this.usersService.user?.role.role_name;
+      this.usersService.userLogged.subscribe((user: User) => {
+        this.role = user.role.role_name;
+      });
+    } catch (error) {
+      this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
+      console.log('Usuário não autenticado')
+    }
   }
 }

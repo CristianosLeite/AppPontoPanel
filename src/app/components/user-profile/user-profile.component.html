@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Meus dados</h4>
+  <div class="slot">
+    <a href="#" routerLink="/edit-profile" (click)="closeModal()">Editar
+      <i class="bi bi-pencil-square"></i>
+    </a>
+  </div>
+</div>
+<div class="modal-body">
+  <app-modal-body [user]="user"></app-modal-body>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+  </div>
+</div>

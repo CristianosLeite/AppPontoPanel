@@ -15,9 +15,8 @@
     </div>
     <!-- Content -->
     <div class="container">
-      <app-filter-tags (tagsChanged)="filterUsers($event)"></app-filter-tags>
-      <app-toolbar></app-toolbar>
-      <app-users-component (userSelected)="selectUser($event)"></app-users-component>
+      <app-toolbar [context]="context"></app-toolbar>
+      <app-modal-body [readOnly]="false"></app-modal-body>
     </div>
   </div>
 </div>

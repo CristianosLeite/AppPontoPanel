@@ -1,13 +1,16 @@
+<!--Toolbar-->
 <div class="container toolbar">
 
-  <div class="icons">
+  <!-- Novo usuário-->
+  <div class="icons" *ngIf="context === 'listUsers' ">
     <a class="slot" (click)="openUserModal()">
       <i class="bi bi-person-plus-fill"></i>
       <p>Novo usuário</p>
     </a>
   </div>
 
-  <div class="icons">
+  <!-- Gerar pendência-->
+  <div class="icons" *ngIf="context === 'listUsers'">
     <a class="slot" (click)="isMultipleSelected || isSingleSelected ?
       createPending() : null" [class.disabled]="!isMultipleSelected && !isSingleSelected">
       <i class="bi bi-person-fill-exclamation"></i>
@@ -15,7 +18,8 @@
     </a>
   </div>
 
-  <div class="icons">
+  <!-- Criar solicitação-->
+  <div class="icons" *ngIf="context === 'listUsers'">
     <a class="slot" (click)="isMultipleSelected || isSingleSelected ? createSolicitation() : null"
       [class.disabled]="!isMultipleSelected && !isSingleSelected">
       <i class="bi bi-envelope-exclamation-fill"></i>
@@ -23,7 +27,8 @@
     </a>
   </div>
 
-  <div class="icons">
+  <!-- Editar usuário-->
+  <div class="icons" *ngIf="context === 'listUsers'">
     <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? editUser() : null"
       [class.disabled]="isMultipleSelected || !isSingleSelected">
       <i class="bi bi-pencil-fill"></i>
@@ -31,11 +36,30 @@
     </a>
   </div>
 
-  <div class="icons">
+  <!-- Excluir usuário-->
+  <div class="icons" *ngIf="context === 'listUsers'">
     <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? disableUser(selectedUsers[0]) : null"
       [class.disabled]="isMultipleSelected || !isSingleSelected">
       <i class="bi bi-trash-fill"></i>
       <p>Excluir usuário</p>
+    </a>
+  </div>
+
+  <!-- Salvar edição-->
+  <div class="icons" *ngIf="context === 'edit'">
+    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? openUserModal() : null"
+      [class.disabled]="isMultipleSelected || !isSingleSelected">
+      <i class="bi bi-floppy-fill"></i>
+      <p>Salvar</p>
+    </a>
+  </div>
+
+  <!-- Cancelar edição-->
+  <div class="icons" *ngIf="context === 'edit'">
+    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? openUserModal() : null"
+      [class.disabled]="isMultipleSelected || !isSingleSelected">
+      <i class="bi bi-x-circle-fill"></i>
+      <p>Cancelar</p>
     </a>
   </div>
 

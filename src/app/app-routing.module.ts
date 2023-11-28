@@ -9,6 +9,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,18 @@ const routes: Routes = [
       {
         path: 'registration',
         component: FinishRegistration,
+      },
+    ],
+  },
+
+  {
+    path: 'edit-profile',
+    component: EditProfilePageComponent,
+    data: { title: 'Perfil' },
+    children: [
+      {
+        path: 'edit-profile',
+        component: EditProfilePageComponent,
       },
     ],
   },

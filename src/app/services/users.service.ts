@@ -33,7 +33,7 @@ export class UsersService {
    * @returns {User} Usuário logado.
    * @default null
   */
-  user: User | null = null;
+  user = {} as User;
 
   /**
    * @description Lista de usuários.

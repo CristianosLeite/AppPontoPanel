@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CreateUserComponent } from '../create-user/create-user.component';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
-  selector: 'app-users-tool-bar',
-  templateUrl: './users-tool-bar.component.html',
-  styleUrls: ['./users-tool-bar.component.scss']
+  selector: 'app-toolbar',
+  templateUrl: './tool-bar.component.html',
+  styleUrls: ['./tool-bar.component.scss']
 })
 
-export class UsersToolBarComponent implements OnInit {
+export class ToolBarComponent implements OnInit {
+
+  /**
+   * @description Define quais botões serão exibidos no componente de acordo com o contexto.
+   * @default listUsers
+   * @type {string}
+   * @aceptedValues listUsers | edit |
+   */
+  @Input() context: string = 'listUsers';
+
   modalRef?: BsModalRef;
   config = {
     backdrop: true,

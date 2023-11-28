@@ -37,12 +37,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UsersComponentComponent } from './components/users-component/users-component.component';
 import { FilterTagsComponent } from './components/filter-tags/filter-tags.component';
-import { UsersToolBarComponent } from './components/users-tool-bar/users-tool-bar.component';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { ActionsBarComponent } from './components/actions-bar/actions-bar.component';
 import { FinishRegistration } from './pages/finish-registration/finish-registration';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ModalBodyComponent } from './components/user-profile/modal-body/modal-body.component';
 
 @NgModule({
   declarations: [
@@ -73,11 +76,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     PendingsPageComponent,
     UsersComponentComponent,
     FilterTagsComponent,
-    UsersToolBarComponent,
+    ToolBarComponent,
     ActionsBarComponent,
     FinishRegistration,
     LoadingComponent,
     NotFoundComponent,
+    EditProfilePageComponent,
+    UserProfileComponent,
+    ModalBodyComponent,
   ],
   imports: [
     BrowserModule,
