@@ -8,7 +8,6 @@ import { Pending } from '../interfaces/pendings.interface';
 import { Solicitation } from '../interfaces/solicitations.interface';
 import { LoadingService } from './loading.service';
 
-
 export type Response = {
   data: User;
   token: string;

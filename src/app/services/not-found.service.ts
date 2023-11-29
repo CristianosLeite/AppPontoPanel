@@ -10,6 +10,5 @@ export class NotFoundService {
   /**
    * Evento de not found
    */
-  @Output() notFound = new EventEmitter<string>();
-
+  @Output() notFoundEvent = new EventEmitter<string>();
 }

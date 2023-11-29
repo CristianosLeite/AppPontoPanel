@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body" *ngIf="role === 'manager' ">
   <!-- Sidebar -->
   <app-sidebar [isExpanded]="true" id="isExpanded"></app-sidebar>
   <app-sidebar [isExpanded]="false" id="isNotExpanded"></app-sidebar>

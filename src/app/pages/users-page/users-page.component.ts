@@ -23,7 +23,10 @@ export class UsersPageComponent implements OnInit {
     this.usersService.userLogged.subscribe((user: User) => {
       this.role = user.role;
     });
-    this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
+
+    setTimeout(() => {
+      this.role === undefined ? this.notFound.notFoundEvent.emit('clientError') : null;
+    }, 100);
   }
 
   filterUsers(tags: string[]) {

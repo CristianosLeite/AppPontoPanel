@@ -11,6 +11,6 @@ export class LoginPageComponent {
   constructor(private readonly notFound: NotFoundService) { }
 
   notFoundError() {
-    this.notFound.notFound.emit('');
+    this.notFound.notFoundEvent.emit('');
   }
 }

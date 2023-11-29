@@ -16,7 +16,7 @@ import { Role } from './role.interface';
  * @param role Nível de acesso do usuário
  * @param situation Situação do usuário (Activated, Deactivated, Blocked)
  * @param created_at Data de criação do usuário
- * @param adresses Endereços do usuário
+ * @param addresses Endereços do usuário
  * @param phones Telefones do usuário
  * @param enterprise Empresa do usuário
  * @param status Status do usuário
@@ -38,7 +38,7 @@ export interface User {
   role: Role;
   situation: string;
   created_at?: string;
-  adresses?: Adress[];
+  addresses?: Adress[];
   phones?: Phone[];
   enterprise: Enterprise;
   /**

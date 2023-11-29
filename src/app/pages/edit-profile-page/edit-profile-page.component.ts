@@ -54,6 +54,12 @@ export class EditProfilePageComponent implements OnInit {
       this.role = user.role;
       this.form.patchValue(user);
     });
-    this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
+    setTimeout(() => {
+      this.role === undefined ? this.notFound.notFoundEvent.emit('clientError') : null;
+    }, 100);
+  }
+
+  changeContext(context: string) {
+    this.context = context;
   }
 }

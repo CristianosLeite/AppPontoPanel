@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CreateUserComponent } from '../create-user/create-user.component';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +17,7 @@ export class ToolBarComponent implements OnInit {
    * @description Define quais botões serão exibidos no componente de acordo com o contexto.
    * @default listUsers
    * @type {string}
-   * @aceptedValues listUsers | edit |
+   * @aceptedValues listUsers | edit | isEdited
    */
   @Input() context: string = 'listUsers';
 
@@ -32,6 +33,7 @@ export class ToolBarComponent implements OnInit {
   constructor(
     private readonly modalService: BsModalService,
     private readonly usersService: UsersService,
+    private readonly location: Location
   ) { }
 
   bsModalRef: BsModalRef | undefined;
@@ -67,5 +69,9 @@ export class ToolBarComponent implements OnInit {
 
   disableUser(user: User) {
     this.usersService.disableUser(user);
+  }
+
+  comeBack() {
+    this.location.back();
   }
 }

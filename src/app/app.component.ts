@@ -12,14 +12,12 @@ import { Role } from './interfaces/role.interface';
   styleUrls: ['./app.component.scss']
 })
 
-
 export class AppComponent implements OnInit {
-
   constructor(
     private readonly loading: LoadingService,
     private readonly apiService: ApiServices,
     private readonly router: Router,
-    private readonly notFound: NotFoundService,
+    private readonly notFoundService: NotFoundService,
     private readonly usersService: UsersService
   ) { }
 
@@ -33,7 +31,7 @@ export class AppComponent implements OnInit {
     this.loading.isLoading.subscribe((loading: boolean) => {
       this.isLoading = loading;
     });
-    this.notFound.notFound.subscribe((param: string) => {
+    this.notFoundService.notFoundEvent.subscribe((param: string) => {
       this.param = param;
     });
   }

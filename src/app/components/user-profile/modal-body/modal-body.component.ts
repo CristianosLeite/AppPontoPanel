@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
@@ -20,7 +20,13 @@ export class ModalBodyComponent implements OnInit {
   */
   @Input() user = {} as User;
 
+  /**
+   * @description Define o contexto do modal.
+  */
+  @Output() context = new EventEmitter<string>();
+
   userPhoto: string | ArrayBuffer | null = null;
+  confirmPassword: string = '';
 
   form = new FormGroup({
     user_id: new FormControl('', Validators.required),
@@ -29,8 +35,37 @@ export class ModalBodyComponent implements OnInit {
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
     register_number: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     created_at: new FormControl('', Validators.required),
+    address_id: new FormControl('', Validators.required),
+    street: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
+    neighborhood: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    zip_code: new FormControl('', Validators.required),
+  });
+
+  originalForm = new FormGroup({
+    user_id: new FormControl('', Validators.required),
+    company_id: new FormControl('', Validators.required),
+    cod_user: new FormControl('', Validators.required),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    register_number: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    created_at: new FormControl('', Validators.required),
+    address_id: new FormControl('', Validators.required),
+    street: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
+    neighborhood: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    zip_code: new FormControl('', Validators.required),
   });
 
   constructor(private readonly usersService: UsersService) { }
@@ -38,6 +73,10 @@ export class ModalBodyComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.usersService.user;
     this.form.patchValue(this.user);
+    this.form.patchValue(this.user.addresses![0]);
+    this.originalForm.patchValue(this.user);
+    this.originalForm.patchValue(this.user.addresses![0]);
+    this.confirmPassword = this.user.cod_user;
   }
 
   handleFileInput(event: any) {
@@ -47,5 +86,27 @@ export class ModalBodyComponent implements OnInit {
     reader.onload = () => {
       this.userPhoto = reader.result;
     };
+  }
+
+  compareFormValues() {
+    return JSON.stringify(this.form.value) === JSON.stringify(this.originalForm.value);
+  }
+
+  comparePassword() {
+    return this.form.value.cod_user === this.confirmPassword;
+  }
+
+  handleInputEvent(event: Event) {
+    if (event.target) {
+      const target = event.target as HTMLInputElement;
+      const name = target.name;
+      const value = target.value;
+      console.log(name, value);
+    }
+    if (!this.compareFormValues()) {
+      this.context.emit('isEdited');
+    } else {
+      this.context.emit('edit');
+    }
   }
 }

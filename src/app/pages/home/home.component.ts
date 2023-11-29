@@ -11,19 +11,21 @@ import { Role } from 'src/app/interfaces/role.interface';
 })
 export class HomeComponent implements OnInit {
 
-  role: Role['role_name'] | undefined = undefined;
+  role: Role| undefined = undefined;
 
-  constructor(private readonly notFound: NotFoundService, private readonly usersService: UsersService) { };
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly notFound: NotFoundService
+  ) { };
 
-  ngOnInit(): void {
-    try {
-      this.role = this.usersService.user?.role.role_name;
-      this.usersService.userLogged.subscribe((user: User) => {
-        this.role = user.role.role_name;
-      });
-    } catch (error) {
-      this.role === undefined ? this.notFound.notFound.emit('clientError') : null;
-      console.log('Usuário não autenticado')
-    }
+  ngOnInit() {
+    this.role = this.usersService.user.role;
+    this.usersService.userLogged.subscribe((user: User) => {
+      this.role = user.role;
+    });
+
+    setTimeout(() => {
+      this.role === undefined ? this.notFound.notFoundEvent.emit('clientError') : null;
+    }, 100);
   }
 }

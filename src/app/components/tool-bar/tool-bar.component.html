@@ -46,18 +46,17 @@
   </div>
 
   <!-- Salvar edição-->
-  <div class="icons" *ngIf="context === 'edit'">
-    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? openUserModal() : null"
-      [class.disabled]="isMultipleSelected || !isSingleSelected">
+  <div class="icons" *ngIf="context === 'edit' || context === 'isEdited' ">
+    <a class="slot"
+      [class.disabled]="context === 'edit'">
       <i class="bi bi-floppy-fill"></i>
       <p>Salvar</p>
     </a>
   </div>
 
   <!-- Cancelar edição-->
-  <div class="icons" *ngIf="context === 'edit'">
-    <a class="slot" (click)="!isMultipleSelected && isSingleSelected ? openUserModal() : null"
-      [class.disabled]="isMultipleSelected || !isSingleSelected">
+  <div class="icons" *ngIf="context === 'edit' || context === 'isEdited' ">
+    <a class="slot" (click)="comeBack()">
       <i class="bi bi-x-circle-fill"></i>
       <p>Cancelar</p>
     </a>

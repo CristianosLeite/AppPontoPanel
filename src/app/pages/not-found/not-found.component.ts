@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotFoundService } from '../../services/not-found.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -16,10 +15,9 @@ export class NotFoundComponent implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly service: NotFoundService,
     private readonly usersService: UsersService
-    ) {}
-  @Input() param = new EventEmitter<string>();
+  ) { }
+  @Input() param: string | null = null;
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -27,12 +25,10 @@ export class NotFoundComponent implements OnInit {
         this.error = params['Error'];
         this.code = params['Code'];
         this.message = params['Message'];
-        this.param.emit('serverError');
+        this.param = 'serverError';
       }
     });
-    this.service.notFound.subscribe((param: string) => {
-      this.param.emit(param);
-    });
+    this.param = 'clientError'
   }
 
   reloadApplication() {

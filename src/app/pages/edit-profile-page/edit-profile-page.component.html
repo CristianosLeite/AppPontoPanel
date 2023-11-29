@@ -16,7 +16,7 @@
     <!-- Content -->
     <div class="container">
       <app-toolbar [context]="context"></app-toolbar>
-      <app-modal-body [readOnly]="false"></app-modal-body>
+      <app-modal-body [readOnly]="false" (context)="changeContext($event)"></app-modal-body>
     </div>
   </div>
 </div>
