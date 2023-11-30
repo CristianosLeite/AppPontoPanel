@@ -47,6 +47,7 @@ import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ModalBodyComponent } from './components/user-profile/modal-body/modal-body.component';
 import { WarningPromptComponent } from './components/warning-prompt/warning-prompt.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -100,10 +101,12 @@ import { WarningPromptComponent } from './components/warning-prompt/warning-prom
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
 
-  providers: [BsModalService, NgForm, BsDropdownDirective],
+  providers: [BsModalService, NgForm, BsDropdownDirective, provideNgxMask()],
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

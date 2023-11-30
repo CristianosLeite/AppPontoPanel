@@ -51,30 +51,11 @@ export class CreateUserComponent implements OnInit {
     userForm.resetForm();
   }
 
-  cpfMask(event: any) {
-    const value = event.target.value;
-    const mask = '###.###.###-##';
-    const maskedValue = this.applyMask(value, mask);
-    event.target.value = maskedValue;
-    this.validateCpf(this.newUser.register_number) ?
-      this.newUser.register_number = maskedValue :
-      this.newUser.register_number = '';
-  }
-
-  applyMask(value: any, mask: string) {
-    const valueArray = value.split('');
-    const maskArray = mask.split('');
-    const result = [];
-    let index = 0;
-    for (let i = 0; i < maskArray.length; i++) {
-      if (maskArray[i] === '#') {
-        result.push(valueArray[index]);
-        index++;
-      } else {
-        result.push(maskArray[i]);
-      }
+  checkCpf(cpf: Event) {
+    const cpfInput = cpf.target as HTMLInputElement;
+    if (!this.validateCpf(cpfInput.value)) {
+      cpfInput.value = '';
     }
-    return result.join('');
   }
 
   validateCpf(cpf: string): boolean {
