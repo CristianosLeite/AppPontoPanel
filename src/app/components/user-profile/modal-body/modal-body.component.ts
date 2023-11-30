@@ -31,12 +31,17 @@ export class ModalBodyComponent implements OnInit {
   parameters: string[] = [];
   message: string = '';
 
+  /**
+   * @description Formulário editável pelo usuário.
+   * @default Usuário logado
+  */
   form = new FormGroup({
     user_id: new FormControl('', Validators.required),
     company_id: new FormControl('', Validators.required),
     cod_user: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
+    profile_photo: new FormControl('', Validators.required),
     register_number: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -51,12 +56,17 @@ export class ModalBodyComponent implements OnInit {
     zip_code: new FormControl('', Validators.required),
   });
 
+  /**
+   * @description Formulário original, usado para comparar com o formulário atual.
+   * @default Usuário logado
+  */
   originalForm = new FormGroup({
     user_id: new FormControl('', Validators.required),
     company_id: new FormControl('', Validators.required),
     cod_user: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
+    profile_photo: new FormControl('', Validators.required),
     register_number: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -85,8 +95,7 @@ export class ModalBodyComponent implements OnInit {
     this.confirmPassword = this.user.cod_user;
   }
 
-  handleFileInput(event: any) {
-    const file = event!.target!.files![0];
+  private readFileAndSetUserPhoto(file: File): void {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -94,45 +103,90 @@ export class ModalBodyComponent implements OnInit {
     };
   }
 
-  compareFormValues() {
+  private compareFormValues(): boolean {
     return JSON.stringify(this.form.value) === JSON.stringify(this.originalForm.value);
   }
 
-  comparePassword() {
+  private comparePassword(): boolean {
     return this.form.value.cod_user === this.confirmPassword;
   }
 
-  updateMessage() {
-    switch (this.parameters.length) {
+  private updateMessage(): void {
+    const parameterCount = this.parameters.length;
+
+    switch (parameterCount) {
       case 0:
         this.message = '';
         break;
       case 1:
-        this.message = `
-          O seguinte parâmetro foi alterado:\n
-          ${this.parameters[0]}
-        `;
+        this.message = `O seguinte parâmetro foi alterado:\n${this.parameters[0]}`;
         break;
       default:
-        this.message = `
-          O seguintes parâmetros foram alterados:\n
-          ${this.parameters.join(', ')}
-        `;
+        this.message = `O seguintes parâmetros foram alterados:\n${this.parameters.join(', ')}`;
     }
   }
 
-  handleInputEvent(event: Event) {
-    if (event.target) {
-      const target = event.target as HTMLInputElement;
-      const name = target.name;
-      this.parameters.push(name);
-      this.updateMessage();
-      this.messageService.setMessage(this.message);
-    }
+  private updateFormComparison(): void {
     if (!this.compareFormValues()) {
       this.context.emit('isEdited');
     } else {
+      this.parameters = [];
       this.context.emit('edit');
     }
+  }
+
+  /**
+   * @description Método chamado quando o usuário altera o valor de um campo do formulário.
+   * @param event
+  */
+  public handleInputEvent(event: Event): void {
+    if (!event.target) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const name = target.name;
+
+    this.updateFormComparison();
+
+    if (this.parameters.includes(name)) {
+      return;
+    }
+
+    this.parameters.push(name);
+
+    this.updateFormComparison();
+    this.updateMessage();
+    this.messageService.setMessage(this.message);
+  }
+
+  /**
+   * @description Método chamado quando o usuário altera a foto de perfil.
+   * @param event
+  */
+  public handleFileInput(event: Event): void {
+    if (!event.target) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const name = target.name;
+
+    this.updateFormComparison();
+
+    if (this.parameters.includes(name)) {
+      return;
+    }
+
+    this.parameters.push(name);
+
+    const targetFiles = target.files as FileList;
+    const file = targetFiles[0];
+
+    this.readFileAndSetUserPhoto(file);
+
+    this.updateFormComparison();
+    this.updateMessage();
+    this.messageService.setMessage(this.message);
   }
 }
