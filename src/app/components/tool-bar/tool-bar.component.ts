@@ -4,6 +4,7 @@ import { CreateUserComponent } from '../create-user/create-user.component';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 import { Location } from '@angular/common';
+import { WarningPromptComponent } from '../warning-prompt/warning-prompt.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -21,7 +22,8 @@ export class ToolBarComponent implements OnInit {
    */
   @Input() context: string = 'listUsers';
 
-  modalRef?: BsModalRef;
+  @Input() message?: string;
+  bsModalRef?: BsModalRef;
   config = {
     backdrop: true,
     ignoreBackdropClick: true,
@@ -36,7 +38,6 @@ export class ToolBarComponent implements OnInit {
     private readonly location: Location
   ) { }
 
-  bsModalRef: BsModalRef | undefined;
 
   isSingleSelected: boolean = false;
   isMultipleSelected: boolean = false;
@@ -53,6 +54,11 @@ export class ToolBarComponent implements OnInit {
 
   openUserModal() {
     this.bsModalRef = this.modalService.show(CreateUserComponent, this.config);
+  }
+
+  openWarningModal() {
+    this.bsModalRef = this.modalService.show(WarningPromptComponent,
+      { class: 'modal-sm', ignoreBackdropClick: true });
   }
 
   createPending() {

@@ -47,8 +47,7 @@
 
   <!-- Salvar edição-->
   <div class="icons" *ngIf="context === 'edit' || context === 'isEdited' ">
-    <a class="slot"
-      [class.disabled]="context === 'edit'">
+    <a class="slot" (click)="context === 'isEdited' ? openWarningModal() : null" [class.disabled]="context === 'edit'">
       <i class="bi bi-floppy-fill"></i>
       <p>Salvar</p>
     </a>

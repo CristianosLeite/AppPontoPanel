@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-modal-body',
@@ -27,6 +28,8 @@ export class ModalBodyComponent implements OnInit {
 
   userPhoto: string | ArrayBuffer | null = null;
   confirmPassword: string = '';
+  parameters: string[] = [];
+  message: string = '';
 
   form = new FormGroup({
     user_id: new FormControl('', Validators.required),
@@ -68,7 +71,10 @@ export class ModalBodyComponent implements OnInit {
     zip_code: new FormControl('', Validators.required),
   });
 
-  constructor(private readonly usersService: UsersService) { }
+  constructor(
+    private readonly usersService: UsersService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.user = this.usersService.user;
@@ -96,12 +102,32 @@ export class ModalBodyComponent implements OnInit {
     return this.form.value.cod_user === this.confirmPassword;
   }
 
+  updateMessage() {
+    switch (this.parameters.length) {
+      case 0:
+        this.message = '';
+        break;
+      case 1:
+        this.message = `
+          O seguinte parâmetro foi alterado:\n
+          ${this.parameters[0]}
+        `;
+        break;
+      default:
+        this.message = `
+          O seguintes parâmetros foram alterados:\n
+          ${this.parameters.join(', ')}
+        `;
+    }
+  }
+
   handleInputEvent(event: Event) {
     if (event.target) {
       const target = event.target as HTMLInputElement;
       const name = target.name;
-      const value = target.value;
-      console.log(name, value);
+      this.parameters.push(name);
+      this.updateMessage();
+      this.messageService.setMessage(this.message);
     }
     if (!this.compareFormValues()) {
       this.context.emit('isEdited');

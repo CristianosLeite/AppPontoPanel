@@ -13,7 +13,6 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-  modalRef?: BsModalRef;
   config = {
     backdrop: true,
     ignoreBackdropClick: true,

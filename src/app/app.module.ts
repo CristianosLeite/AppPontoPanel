@@ -46,6 +46,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ModalBodyComponent } from './components/user-profile/modal-body/modal-body.component';
+import { WarningPromptComponent } from './components/warning-prompt/warning-prompt.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ModalBodyComponent } from './components/user-profile/modal-body/modal-b
     EditProfilePageComponent,
     UserProfileComponent,
     ModalBodyComponent,
+    WarningPromptComponent,
   ],
   imports: [
     BrowserModule,
