@@ -11,6 +11,7 @@ import { Role } from './role.interface';
  * @param name Nome completo do usuário
  * @param first_name Primeiro nome do usuário
  * @param last_name Sobrenome do usuário
+ * @param profile_photo Foto de perfil do usuário
  * @param register_number Número do CPF do usuário
  * @param email Email do usuário
  * @param role Nível de acesso do usuário
@@ -33,6 +34,7 @@ export interface User {
   name: string;
   first_name: string;
   last_name: string;
+  profile_photo: string;
   register_number: string;
   email: string;
   role: Role;

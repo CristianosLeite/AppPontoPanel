@@ -33,9 +33,7 @@
             </div>
             <div class="col" *ngIf="!readOnly">
               <div class="photo-area border">
-                <label for="photo">Foto</label>
-                <input type="file" name="Foto" (change)="handleFileInput($event)"
-                  [(ngModel)]="form.value.profile_photo">
+                <input type="file" name="Foto" (change)="handleFileInput($event)">
                 <img class="profile-photo" [src]="userPhoto" *ngIf="userPhoto">
               </div>
             </div>

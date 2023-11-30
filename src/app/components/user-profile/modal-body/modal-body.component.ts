@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 import { MessageService } from 'src/app/services/message.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-modal-body',
@@ -41,7 +42,7 @@ export class ModalBodyComponent implements OnInit {
     cod_user: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
-    profile_photo: new FormControl('', Validators.required),
+    profile_picture: new FormControl(Blob, Validators.required),
     register_number: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -66,7 +67,7 @@ export class ModalBodyComponent implements OnInit {
     cod_user: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
-    profile_photo: new FormControl('', Validators.required),
+    profile_picture: new FormControl('', Validators.required),
     register_number: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -83,7 +84,8 @@ export class ModalBodyComponent implements OnInit {
 
   constructor(
     private readonly usersService: UsersService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
@@ -95,12 +97,22 @@ export class ModalBodyComponent implements OnInit {
     this.confirmPassword = this.user.cod_user;
   }
 
-  private readFileAndSetUserPhoto(file: File): void {
+  public readFileAndSetUserPhoto(file: File): void {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.userPhoto = reader.result;
+    reader.onload = (e) => {
+      this.userPhoto = e.target!.result;
+      let blob = new Blob([new Uint8Array(this.userPhoto as ArrayBuffer)], { type: 'image/jpeg' });
+      let readerBlob = new FileReader();
+      readerBlob.readAsArrayBuffer(blob);
+
+      this.imageService.updateProfilePicture(this.user.user_id, blob).then(() => {
+        this.messageService.setMessage('Foto de perfil atualizada com sucesso.');
+      }).catch(() => {
+        this.messageService.setMessage('Erro ao atualizar a foto de perfil.');
+      });
     };
+
+    reader.readAsDataURL(file);
   }
 
   private compareFormValues(): boolean {
@@ -181,12 +193,28 @@ export class ModalBodyComponent implements OnInit {
     this.parameters.push(name);
 
     const targetFiles = target.files as FileList;
-    const file = targetFiles[0];
 
-    this.readFileAndSetUserPhoto(file);
+    for (let i = 0; i < targetFiles.length; i++) {
+      const file = targetFiles[0];
+
+      // Verifica se o arquivo é uma imagem
+      if (!file.type.startsWith('image/')) {
+        alert('O arquivo selecionado não é válido.');
+        target.value = '';
+        return;
+      }
+
+      // Verifica se o arquivo é maior que 2MB
+      if (file.size > 2 * 1024 * 1024) {
+        alert('O arquivo selecionado é muito grande.');
+        target.value = '';
+        return;
+      }
+
+      this.readFileAndSetUserPhoto(file);
+    }
 
     this.updateFormComparison();
     this.updateMessage();
-    this.messageService.setMessage(this.message);
   }
 }

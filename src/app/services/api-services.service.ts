@@ -371,4 +371,38 @@ export class ApiServices {
       throw error;
     }
   }
+
+  async getProfilePicture(): Promise<Blob> {
+    this.loading.setLoading(true);
+    try {
+      const headers = await this.headers();
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.baseUrl}/api/images/profile-picture`, { headers, withCredentials: true, responseType: 'blob' })
+      );
+
+      this.loading.setLoading(false);
+      return response;
+    } catch (error) {
+      this.loading.setLoading(false);
+      throw error
+    }
+  }
+
+  async updateProfilePicture(user_id: string, profile_picture: Blob): Promise<any> {
+    this.loading.setLoading(true);
+    try {
+      const headers = await this.headers();
+      const formData = new FormData();
+      formData.append('profile_picture', profile_picture);
+      const response: any = await lastValueFrom(
+        this.http.put(`${this.baseUrl}/api/images/profile/${user_id}`, formData, { headers, withCredentials: true })
+      );
+
+      this.loading.setLoading(false);
+      return response;
+    } catch (error) {
+      this.loading.setLoading(false);
+      throw error
+    }
+  }
 }
